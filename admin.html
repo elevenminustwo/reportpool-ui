@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Admin Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link href="css/manager.css" rel="stylesheet">
+  
+  <!-- Datatable Css -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+    
+  
+</head>
+<body>
+	<div class="container text-white">
+	<h2>Bilgi Islem Daire Baskanligi Admin Ekrani</h2>
+	
+	<div class="panel">
+		 <div class="panel-body">
+		 <table id="dataTableId" class="table table-striped table-responsive table-bordered">
+            <thead>
+                <tr>
+                    <th>Kullanici Profil Ismi</th>
+                    <th>Kullanicinin Ismi</th>
+                    <th>Kullanicinin Soyadi</th>
+                    <th>Kullanicinin Email</th>
+                    <th>Kullanicinin Hesabi Aktif mi?</th>
+					<th>Kullanicinin Rolu</th>
+					<th>Yetkili oldugu birimler(Eger yetkiliyse)</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+     </table>
+		 </div>
+	</div>
+	
+	
+	
+	</div>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <p class="copyright ">Copyright © 2019 Akdeniz Üniversitesi Tüm Hakları Saklıdır.</p>
+  </footer>
+
+  <!-- Jquery for datatable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <!-- DataTable scripts -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.js"></script>	
+  
+  <script>
+        $(document).ready(function () {
+            $("#dataTableId").DataTable();
+        });
+
+
+    </script>
+  
+</body>
+</html>
