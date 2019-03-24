@@ -10,6 +10,8 @@
 
   <title>User Template</title>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
@@ -24,7 +26,7 @@
 	<div class="container text-white">
 	
 	<h2>Bilgi Islem Daire Baskanligi Rapor Giris Ekrani</h2>
-	<form>
+	<form name="reportForm">
 	<label>Lutfen birim seciniz:</label>
 	<select class="form-control">
 	<option>Unit Select</option>
@@ -36,14 +38,27 @@
 	<div class="row">
 	<div class="col">
 	 <div class="custom-file">
-    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-    <label class="custom-file-label" for="validatedCustomFile">Eklemek istediginiz resmi seciniz...</label>
+		<!--
+		<input type="file" class="custom-file-input" id="validatedCustomFile">
+    <label class="custom-file-label" for="validatedCustomFile">Eklemek istediginiz dosyayı seciniz...</label>
     <div class="invalid-feedback">Example invalid custom file feedback</div>
+		-->
+
+		<div class="multiple-upload">
+					<input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple/>
+
+			<div class="upload-response">
+					<div id="multipleFileUploadError"></div>
+					<div id="multipleFileUploadSuccess"></div>
+			</div>
+	
+
+
 	</div>
 	</div>
 	</div>
 	<div class="text-right mt-3">
-	<button class="btn btn-success float-right ml-3 ">Raporu Isle</button>
+	<button type="submit" id="submitButton" class="btn btn-success float-right ml-3">Raporu Isle</button>
 	<button class="btn btn-dark">Kaydet</button>
 	</div>
 	</form>
@@ -54,8 +69,78 @@
     <p class="copyright ">Copyright © 2019 Akdeniz Üniversitesi Tüm Hakları Saklıdır.</p>
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript">
+	
+
+
+function uploadMultipleFiles(files) {
+
+	'use strict';
+
+var multipleUploadForm = document.querySelector('#multipleUploadForm');
+var multipleFileUploadInput = document.querySelector('#multipleFileUploadInput');
+var multipleFileUploadError = document.querySelector('#multipleFileUploadError');
+var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess')
+
+var reportForm = document.querySelector('#reportForm')
+
+    var formData = new FormData();
+    for(var index = 0; index < files.length; index++) {
+        formData.append("files", files[index]);
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:8080/uploadMultipleFiles");
+
+    xhr.onload = function() {
+        console.log(xhr.responseText);
+        var response = JSON.parse(xhr.responseText);
+        if(xhr.status == 200) {
+            multipleFileUploadError.style.display = "none";
+            var content = "";
+            for(var i = 0; i < response.length; i++) {
+							  if(i == 0) {
+									content += "<p>All Files Uploaded Successfully</p>";
+								}
+                content += "<p>DownloadUrl : <a href='" + response[i].fileDownloadUri + "' target='_blank'>" + response[i].fileDownloadUri + "</a></p>";
+            }
+            multipleFileUploadSuccess.innerHTML = content;
+            multipleFileUploadSuccess.style.display = "block";
+        } else {
+            multipleFileUploadSuccess.style.display = "none";
+            multipleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
+        }
+    }
+		xhr.send(formData);
+	}
+
+	function addReport() {
+	var icerik = document.getElementById("exampleFormControlTextarea1").value;  
+	var reportObject = {"reportId":null,"title":"Rapor","text":"default","isCompleted":1,"dateCompleted":"2006-12-24","userId":1,"departmentunitId":1};
+	reportObject["text"] = icerik;
+	var request = new XMLHttpRequest();
+	var reportJson = JSON.stringify(reportObject);
+	request.open("POST", "http://localhost:8080/savereport");
+	request.setRequestHeader("Content-type", "application/json");
+	request.send(reportJson);
+	}
+	
+
+	// on submit, necessary functions get invoked
+	reportForm.addEventListener('submit', function(event){
+    var files = multipleFileUploadInput.files;
+    if(files.length === 0) {
+
+		}
+		addReport();
+		uploadMultipleFiles(files);
+
+    event.preventDefault();
+  }, true);
+
+
+</script>
 
 
 
