@@ -40,6 +40,7 @@
 		 <table id="dataTableId" class="table table-striped table-bordered">
             <thead>
                 <tr>
+					<th>userId</th>
                     <th>username</th>
                     <th>name</th>
                     <th>surname</th>
@@ -83,7 +84,7 @@
         console.log(request);
     },
 		"success": function (e) {
-				console.log("ssss : ");
+				console.log(e);
 
         },
                 },
@@ -102,12 +103,24 @@
                         "targets": [5],
                         "visible": true,
                         "orderable": false,
+                    },
+					
+                    {
+                        "targets": [6],
+                        "visible": true,
+                        "orderable": false,
+                    },
+					{
+                        "targets": [7],
+                        "visible": true,
+                        "orderable": false,
                     }
                     
                 ],
                 "columns": [
                     //nameler server side da sutun ismine ulasmak icin lazim
-                    { "data": "[]", "name": "username" },
+                    { "data": "userId", "name": "userId" },
+                    { "data": "username", "name": "username" },
                     { "data": "name", "name": "name" },
                     { "data": "surname", "name": "surname" },
                     { "data": "email", "name": "email" },
