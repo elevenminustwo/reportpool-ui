@@ -34,10 +34,10 @@
 <body>
 	<div class="container text-white">
 	<h2>Bilgi Islem Daire Baskanligi Admin Ekrani</h2>
-	
+    
 	<div class="panel">
 		 <div class="panel-body">
-		 <table id="dataTableId" class="table table-striped table-bordered">
+		 <table id="dataTableId" class="table table-striped table-bordered" style="width:100%;">
             <thead>
                 <tr>
 					<th>userId</th>
@@ -48,12 +48,55 @@
                     <th>isActive</th>
 					<th>role</th>
 					<th>unit</th>
+					<th>Remove</th>
                 </tr>
             </thead>
             <tbody>
+				<tr>
+                    <td>username</td>
+                    <td>name</td>
+                    <td>surname</td>
+                    <td>email</td>
+                    <td>isActive</td>
+					<td>role</td>
+					<td>unit</td>
+					<td>
+					<a class="btn btn-sm btn-danger"><text style="color:white;">Delete</text></a>
+					
+					</td>
+                </tr>
+				<tr>
+                    <td>username</td>
+                    <td>name</td>
+                    <td>surname</td>
+                    <td>email</td>
+                    <td>isActive</td>
+					<td>role</td>
+					<td>unit</td>
+					<td><a class="btn btn-sm btn-danger"><text style="color:white;">Delete</text></a></td>
+                </tr>
+				<tr>
+                    <td>username</td>
+                    <td>name</td>
+                    <td>surname</td>
+                    <td>email</td>
+                    <td>isActive</td>
+					<td>role</td>
+					<td>unit</td>
+					<td><a class="btn btn-sm btn-danger"><text style="color:white;">Delete</text></a></td>
+                </tr>
+				<tr>
+                    <td>username</td>
+                    <td>name</td>
+                    <td>surname</td>
+                    <td>email</td>
+                    <td>isActive</td>
+					<td>role</td>
+					<td>unit</td>
+					<td><a class="btn btn-sm btn-danger"><text style="color:white;">Delete</text></a></td>
+                </tr>
             </tbody>
      </table>
-		 </div>
 	</div>
 	
 	
@@ -91,7 +134,7 @@
                 "columnDefs": [
                     {
                         "targets": [0],
-                        "visible": true,
+                        "visible": false,
                         "orderable": true,
                     },
                     {
