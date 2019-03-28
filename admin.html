@@ -15,8 +15,9 @@
   <!-- Jquery for datatable -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <!-- Bootstrap core CSS -->
+  <!-- Bootstrap core CSS JS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   <!-- Custom CSS -->
   <link href="css/manager.css" rel="stylesheet">
@@ -65,7 +66,58 @@
   <footer class="footer text-center">
     <p class="copyright ">Copyright © 2019 Akdeniz Üniversitesi Tüm Hakları Saklıdır.</p>
   </footer>
-  
+  <div class="modal fade" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="">
+            <div class="modal-dialog modal-dialog-center">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h class="modal-title text-muted">Add Role Modal</h>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <form>
+                        <div class="form-group m-3">
+                                <label for="selectedrole">Select role:</label>
+								<select class="form-control form-control-sm" id="selectedrole">
+								<option value="1">Admin</option>
+								<option value="2">Manager</option>
+								<option value="3">User</option>
+								</select>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+					<button class="btn btn-success" onclick="addRole()">
+                            <i class="fa fa-plus" aria-hidden="true">Add</i>
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+		
+	  <div class="modal fade" id="roledelModal" tabindex="-1" role="dialog" aria-labelledby="">
+            <div class="modal-dialog modal-dialog-center">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h class="modal-title text-muted">Delete Role Modal</h>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+					<form>
+                        <div class="form-group m-3 text-center">
+                                <label>Are you sure?</label>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+					<button class="btn btn btn-danger" onclick="delRole()">
+                            <i class="fa fa-trash" aria-hidden="true">Del</i>
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
   <script>
         $(document).ready(function () {
             $("#dataTableId").DataTable({
@@ -97,9 +149,9 @@
                         "orderable": true,
 						"render": function ( data, type, row, meta ) {
 							if(data!=null){
-							return data +'</button><button type="submit" class="btn btn-sm btn-danger float-right ml-1"><i class="fa fa-trash" aria-hidden="true">Del</i></button>';
+							return data +'</button><button type="submit" data-id="'+row[0]+'" class="open-roledelModal btn btn-sm btn-danger float-right ml-1"><i class="fa fa-trash" aria-hidden="true">Del</i></button>';
 							}
-							return '</button><button type="submit" class="btn btn-sm btn-success float-right ml-1"><i class="fa fa-plus" aria-hidden="true">Add</i></button>';
+							return '</button><button type="submit" data-id="'+row[0]+'" class="open-roleModal btn btn-sm btn-success float-right ml-1"><i class="fa fa-plus" aria-hidden="true">Add</i></button>';
 					},
                     },
                     {
@@ -120,6 +172,52 @@
 
                 "pagingType": "full_numbers"
             });
+			
+        });
+		var id="";
+		function addRole() {
+            var data = {
+                userId: id,
+                roleId: $("#selectedrole").val(),
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/api/addRole",
+                data: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' },
+                success: function(e){
+				$('#dataTableId').DataTable().ajax.reload();
+				$('#roleModal').modal('hide');
+
+				},
+            });
+        }
+		function delRole() {
+            var data = {
+                userId: id,
+                roleId: $("#selectedrole").val(),
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/api/delRole",
+                data: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' },
+                success: function(e){
+				$('#dataTableId').DataTable().ajax.reload();
+				$('#roledelModal').modal('hide');
+
+				},
+            });
+        }
+		 $(document).on("click", ".open-roleModal", function () {
+            id = $(this).data('id');
+            $('#roleModal').modal('show');
+            
+        });
+		 $(document).on("click", ".open-roledelModal", function () {
+            id = $(this).data('id');
+            $('#roledelModal').modal('show');
+            
         });
     </script>
   
