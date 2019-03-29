@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app" ng-controller="Language as lang">
 
 <head>
 
@@ -10,6 +10,12 @@
 
   <title>Manager Template</title>
 
+    <!-- AngularJs -->
+  <script src="vendor/angular-1.6.0/angular.min.js"></script>
+  <script src="js/app.config.js"></script>
+  <script src="js/app.module.js"></script>
+  <script src="js/language.js"></script>
+  
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
@@ -19,14 +25,15 @@
   
 </head>
 <body>
-	<body >
 	
 	<div class="container text-white">
-	<h2>Bilgi Islem Daire Baskanligi Rapor Giris Ekrani</h2>
+	<h2>{{lang.managerheader}}</h2>
+		<button class="btn btn-danger" ng-click="lang.translateeng()">English</button>
+	<button class="btn btn-danger" ng-click="lang.translatetr()">Turkce</button>
 	<form>
-	<label>Lutfen birim seciniz:</label>
+	<label>{{lang.managerplsunit}}:</label>
 	<select class="form-control">
-	<option>Unit Select</option>
+	<option>{{lang.optunit}}</option>
 	</select>
 	<div class="form-group">
 		<label for="exampleFormControlTextarea1">Raporunuz:</label>
@@ -58,9 +65,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
 
-
-
-</body>
 
 </body>
 </html>
