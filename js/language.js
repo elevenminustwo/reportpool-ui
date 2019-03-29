@@ -15,6 +15,13 @@
 				lang.optunit="Biriminiz";
 				lang.copyright="Copyright";
 				lang.del="Sil";
+				lang.admindtusername="Kullanici Adi";
+				lang.admindtname="Isim";
+				lang.admindtsurname="Soyisim";
+                lang.admindtemail="Mail Adresi";
+				lang.admindtisactive="Aktif mi?";
+				lang.admindtrolename="Rolu";
+				lang.admindtunitname="Birim adi";
         })();
 		
 		lang.translateeng = translateeng;
@@ -25,6 +32,13 @@
 				lang.optunit="Your unit";
 				lang.copyright="Copyright";
 				lang.del="Del";
+				lang.admindtusername="Username";
+				lang.admindtname="Name";
+				lang.admindtsurname="Surname";
+                lang.admindtemail="Email";
+				lang.admindtisactive="Is Active?";
+				lang.admindtrolename="Role";
+				lang.admindtunitname="Unit name";
 		}
 		lang.translatetr = translatetr;
 		function translatetr(){
@@ -34,6 +48,13 @@
 				lang.optunit="Biriminiz";
 				lang.copyright="Copyright";
 				lang.del="Sil";
+				lang.admindtusername="Kullanici Adi";
+				lang.admindtname="Isim";
+				lang.admindtsurname="Soyisim";
+                lang.admindtemail="Mail Adresi";
+				lang.admindtisactive="Aktif mi?";
+				lang.admindtrolename="Rolu";
+				lang.admindtunitname="Birim adi";
 		}
     }
 
