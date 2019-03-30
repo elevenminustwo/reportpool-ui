@@ -28,9 +28,10 @@
 	<h2>Bilgi Islem Daire Baskanligi Rapor Giris Ekrani</h2>
 	<form name="reportForm">
 	<label>Lutfen birim seciniz:</label>
-	<select class="form-control">
+	<select id="dropdown" class="form-control">
 	<option>Unit Select</option>
 	</select>
+	<div id="unitSelectError" class="text-danger"></div>
 	<div class="form-group">
 		<label for="exampleFormControlTextarea1">Raporunuz:</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
@@ -38,15 +39,15 @@
 	<div class="row">
 	<div class="col">
 	 <div class="custom-file">
-		<!--
-		<input type="file" class="custom-file-input" id="validatedCustomFile">
-    <label class="custom-file-label" for="validatedCustomFile">Eklemek istediginiz dosyayı seciniz...</label>
+		
+		<input id="multipleFileUploadInput" type="file" class="custom-file-input" multiple>
+    <label id="multipleFileUploadLabel" class="custom-file-label" for="multipleFileUploadInput">Eklemek istediginiz dosyayı seciniz...</label>
     <div class="invalid-feedback">Example invalid custom file feedback</div>
-		-->
-
+		
+		<!--
 		<div class="multiple-upload">
 					<input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple/>
-
+		-->
 			<div class="upload-response">
 					<div id="multipleFileUploadError"></div>
 					<div id="multipleFileUploadSuccess"></div>
@@ -74,12 +75,47 @@
 	
 
 
+	var unitArray;
+	var menu = document.getElementById("dropdown");
+
+	$(document).ready(function() {  
+     $.getJSON("http://localhost:8080/api/getUserUnits/1", 
+					function(data) { 
+						console.log(data);
+						unitArray = data;
+						
+						for(var i = 0; i < unitArray.length; i++) {
+							console.log(unitArray[i][1]);
+							var option = document.createElement("option");
+							option.text = unitArray[i][1] + "/" + unitArray[i][2];
+							menu.add(option);
+						}
+					}
+     ); 
+	});
+
+
+
+	$('#multipleFileUploadInput').on('change',function(){
+                //get the file name
+								var fileNames = "";
+                var files = $(this)[0].files;
+								for (var i = 0; i < files.length; i++) {
+        					fileNames += (files[i].name) + " ";
+    						}
+
+								console.log(fileNames);
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileNames);
+            })
+
+
 function uploadMultipleFiles(files) {
 
-	'use strict';
+'use strict';
 
 var multipleUploadForm = document.querySelector('#multipleUploadForm');
-var multipleFileUploadInput = document.querySelector('#multipleFileUploadInput');
+var multipleFileUploadInput = document.querySelector('#multipleFileUploadınput');
 var multipleFileUploadError = document.querySelector('#multipleFileUploadError');
 var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess')
 
@@ -116,22 +152,42 @@ var reportForm = document.querySelector('#reportForm')
 	}
 
 	function addReport() {
-	var icerik = document.getElementById("exampleFormControlTextarea1").value;  
-	var reportObject = {"reportId":null,"title":"Rapor","text":"default","isCompleted":1,"dateCompleted":"2006-12-24","userId":1,"departmentunitId":1};
-	reportObject["text"] = icerik;
-	var request = new XMLHttpRequest();
-	var reportJson = JSON.stringify(reportObject);
-	request.open("POST", "http://localhost:8080/savereport");
-	request.setRequestHeader("Content-type", "application/json");
-	request.send(reportJson);
+		var icerik = document.getElementById("exampleFormControlTextarea1").value;  
+		document.getElementById("exampleFormControlTextarea1").value = "";
+		
+		var reportObject = {"reportId":null,"title":"Rapor","text":"default","isCompleted":1,"dateCompleted":"2006-12-24","userId":1,"departmentunitId":1};
+		console.log("unit to save: " + unitArray[dropdown.selectedIndex - 1][0]);
+		reportObject["departmentunitId"] = unitArray[dropdown.selectedIndex - 1][0];
+		reportObject["text"] = icerik;
+		
+		var request = new XMLHttpRequest();
+		var reportJson = JSON.stringify(reportObject);
+		
+		request.open("POST", "http://localhost:8080/savereport");
+		request.setRequestHeader("Content-type", "application/json");
+		request.send(reportJson);
+
+		document.getElementById("unitSelectError").innerHTML = "";
 	}
-	
+
+
+
+
+
+            
+
+
 
 	// on submit, necessary functions get invoked
 	reportForm.addEventListener('submit', function(event){
     var files = multipleFileUploadInput.files;
     if(files.length === 0) {
-
+		}
+		if(dropdown.selectedIndex == 0) {
+			console.log("No unit selected");
+			document.getElementById("unitSelectError").innerHTML = "Please select a unit";
+			event.preventDefault();
+			return;
 		}
 		addReport();
 		uploadMultipleFiles(files);
