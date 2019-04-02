@@ -18,7 +18,7 @@
 				lang.admindtusername="Kullanici Adi";
 				lang.admindtname="Isim";
 				lang.admindtsurname="Soyisim";
-                lang.admindtemail="Mail Adresi";
+        lang.admindtemail="Mail Adresi";
 				lang.admindtisactive="Aktif mi?";
 				lang.admindtrolename="Rolu";
 				lang.admindtunitname="Birim adi";
@@ -26,6 +26,7 @@
 				lang.managertablesurname=" Oluşturan Soyadı";
 				lang.managertabledate=" Raporun Teslim Tarihi";
 				lang.managertablereport="Rapor";
+				lang.admindtdepartmentname="Departman adi";
 
         })();
 		
@@ -40,7 +41,7 @@
 				lang.admindtusername="Username";
 				lang.admindtname="Name";
 				lang.admindtsurname="Surname";
-                lang.admindtemail="Email";
+        lang.admindtemail="Email";
 				lang.admindtisactive="Is Active?";
 				lang.admindtrolename="Role";
 				lang.admindtunitname="Unit name";
@@ -48,6 +49,7 @@
 				lang.managertablesurname="Surname";
 				lang.managertabledate="Report Date Completed";
 				lang.managertablereport="Report";
+				lang.admindtdepartmentname="Department name";
 		}
 		lang.translatetr = translatetr;
 		function translatetr(){
@@ -60,7 +62,7 @@
 				lang.admindtusername="Kullanici Adi";
 				lang.admindtname="Isim";
 				lang.admindtsurname="Soyisim";
-                lang.admindtemail="Mail Adresi";
+        lang.admindtemail="Mail Adresi";
 				lang.admindtisactive="Aktif mi?";
 				lang.admindtrolename="Rolu";
 				lang.admindtunitname="Birim adi";
@@ -68,9 +70,7 @@
 				lang.managertablesurname=" Oluşturan Soyadı";
 				lang.managertabledate=" Raporun Teslim Tarihi";
 				lang.managertablereport="Rapor";
-
-
-
+				lang.admindtdepartmentname="Departman adi";
 		}
     }
 
