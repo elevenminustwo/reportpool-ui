@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Kullanıcı Kayıt Template</title>
+  <title>Login Template</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +29,7 @@
           <div class="card-body">
             <h5 class="card-title text-center">Bilgi Islem Dairesi Rapor Giris</h5>
             <form class="form-signin">
-               <label>Sicil No:</label>
+               <label>Username:</label>
               <div class="form-label-group">
                 <input type="name" id="inputName" class="form-control" required autofocus>
               </div>
@@ -41,7 +41,7 @@
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
-              <a class="btn btn-lg btn-primary btn-block text-uppercase text-white" type="submit">Sign in</a>
+              <a onclick="login()" class="btn btn-lg btn-primary btn-block text-uppercase text-white" type="submit">Sign in</a>
 			  <a class="float-right mt-2" href="register.html">Sign up now!</a>
 			</form>
           </div>
@@ -49,6 +49,22 @@
       </div>
     </div>
   </div>
+   <script>
+      function login(){
+        var username=document.getElementById("inputName").value;
+        var password=document.getElementById("inputPassword").value;
+        $.ajax({
+          url:"http://localhost:8080/api/login/"+username+"/"+password,
+          type:"POST",
+          contentType:"application/json",
+        }).then(function(){
+			window.location.href = "user.html";
+			})
+			.catch(function (data) {
+			alert("Giris basarisiz!");
+			});
+      }
+    </script>
       <!-- Footer -->
     <footer class="footer text-center">
       <p class="copyright ">Copyright © 2019 Akdeniz Üniversitesi Tüm Hakları Saklıdır.</p>

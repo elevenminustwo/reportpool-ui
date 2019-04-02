@@ -67,21 +67,21 @@
   </div>
     <script>
       function submit(){
-        var data = {
-          Email:document.getElementById("email").value,
-          Username:document.getElementById("kullanıcıadı").value,
-          Password:document.getElementById("sifre").value,
-          Name:document.getElementById("ad").value,
-          Surname:document.getElementById("soyad").value,
-          No:document.getElementById("sicilno").value,
-        };
+         var Email=document.getElementById("email").value;
+         var Username=document.getElementById("kullanıcıadı").value;
+         var Password=document.getElementById("sifre").value;
+         var Name=document.getElementById("ad").value;
+         var Surname=document.getElementById("soyad").value;
+         var No=document.getElementById("sicilno").value;
         $.ajax({
-          url:"http://localhost:8080/api/register",
+          url:"http://localhost:8080/api/register/"+Email+"/"+Username+"/"+Password+"/"+Name+"/"+Surname,
           type:"POST",
           contentType:"application/json",
-          data:data,
         }).then(function(){
-		
+			window.location.href = "login.html";
+			})
+			.catch(function (data) {
+			alert("Giris basarisiz!");
 			});
       }
     </script>

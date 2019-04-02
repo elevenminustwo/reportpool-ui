@@ -48,8 +48,8 @@ h5 {
     position: relative;
     padding: 10px 10px 10px 10px;
     text-align: center;
-	color: white;
-	background:rgba(30, 36, 77, 0.96);
+	color: rgba(142, 0, 224, 0.84);
+	background:rgba(169, 244, 231, 1);
 	border-radius: 5px;
 }
 hr {
