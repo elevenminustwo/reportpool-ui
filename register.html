@@ -58,7 +58,7 @@
               <div class="form-label-group">
                 <input type="name" id="sicilno" class="form-control" required>
               </div>
-              <button onclick="submit()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Kayıt Ol</button>
+              <a onclick="submit()" class="btn btn-lg btn-primary btn-block text-uppercase text-white">Kayıt Ol</a>
 			</form>
           </div>
         </div>
@@ -74,21 +74,15 @@
           Name:document.getElementById("ad").value,
           Surname:document.getElementById("soyad").value,
           No:document.getElementById("sicilno").value,
-        }
+        };
         $.ajax({
-          url:"localhost:8080/register",
+          url:"http://localhost:8080/api/register",
           type:"POST",
           contentType:"application/json",
           data:data,
-          success: function(resp){
-            console.log(resp)
-          },
-          error:function(req,status,err){
-            console.log("err")
-          }
-        })
-
-
+        }).then(function(){
+		
+			});
       }
     </script>
 
