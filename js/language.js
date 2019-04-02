@@ -22,6 +22,7 @@
 				lang.admindtisactive="Aktif mi?";
 				lang.admindtrolename="Rolu";
 				lang.admindtunitname="Birim adi";
+				lang.admindtdepartmentname="Departman adi";
         })();
 		
 		lang.translateeng = translateeng;
@@ -39,6 +40,7 @@
 				lang.admindtisactive="Is Active?";
 				lang.admindtrolename="Role";
 				lang.admindtunitname="Unit name";
+				lang.admindtdepartmentname="Department name";
 		}
 		lang.translatetr = translatetr;
 		function translatetr(){
@@ -55,6 +57,7 @@
 				lang.admindtisactive="Aktif mi?";
 				lang.admindtrolename="Rolu";
 				lang.admindtunitname="Birim adi";
+				lang.admindtdepartmentname="Departman adi";
 		}
     }
 

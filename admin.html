@@ -53,14 +53,17 @@
 		 <table id="dataTableId" class="table table-striped table-bordered" style="width:100%;">
             <thead>
                 <tr>
-					          <th>userid</th>
-                    <th>{{lang.admindtusername}}</th>
-                    <th>{{lang.admindtname}}</th>
-                    <th>{{lang.admindtsurname}}</th>
-                    <th>{{lang.admindtemail}}</th>
+									<th>userid</th>
+							  <th>{{lang.admindtusername}}</th>
+							  <th>{{lang.admindtname}}</th>
+							  <th>{{lang.admindtsurname}}</th>
+							  <th>{{lang.admindtemail}}</th>
 					          <th>{{lang.admindtisactive}}</th>
 					          <th>{{lang.admindtrolename}}</th>
 					          <th>{{lang.admindtunitname}}</th>
+							  <th>{{lang.admindtdepartmentname}}</th>
+							  <th>unitid</th>
+							  <th>departmentid</th>
                 </tr>
             </thead>
             <tbody>
@@ -108,6 +111,7 @@
             </div>
 
         </div>
+
 		
 	  <div class="modal fade" id="roledelModal" tabindex="-1" role="dialog" aria-labelledby="">
             <div class="modal-dialog modal-dialog-center">
@@ -123,6 +127,59 @@
                     </form>
                     <div class="modal-footer">
 					<button class="btn btn btn-danger" onclick="delRole()">
+                            <i class="fa fa-trash" aria-hidden="true">{{lang.del}}</i>
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+				
+	 <div class="modal fade" id="dunitModal" tabindex="-1" role="dialog" aria-labelledby="">
+            <div class="modal-dialog modal-dialog-center">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h class="modal-title text-muted">Add Department Unit Modal</h>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <form>
+                        <div class="form-group m-3">
+                                <label for="selectedDepartment">Select department:</label>
+								<select class="form-control" ng-options="f.name for f in ctrl.Deparments" ng-model="selectedDepartment" ng-change="ctrl.getUnits(selectedDepartment.departmentId)"></select>
+                        </div>
+						<div class="form-group m-3">
+                                <label for="selectedUnit">Select unit:</label>
+								 <select class="form-control" ng-options="f[0] for f in ctrl.Units" ng-model="selectedUnit"></select>
+								</select>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+					<button class="btn btn-success" ng-click="ctrl.addDunit(selectedDepartment.departmentId,selectedUnit[1])">
+                            <i class="fa fa-plus" aria-hidden="true">Add</i>
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+		  <div class="modal fade" id="dunitdelModal" tabindex="-1" role="dialog" aria-labelledby="">
+            <div class="modal-dialog modal-dialog-center">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h class="modal-title text-muted">Delete Department Modal</h>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+					<form>
+                        <div class="form-group m-3 text-center">
+                                <label>Are you sure?</label>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+					<button class="btn btn btn-danger" onclick="delDunit()">
                             <i class="fa fa-trash" aria-hidden="true">{{lang.del}}</i>
                         </button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -157,6 +214,16 @@
                         "visible": false,
                         "orderable": false,
                     },
+					{
+                        "targets": [9],
+                        "visible": false,
+                        "orderable": false,
+                    },
+					{
+                        "targets": [10],
+                        "visible": false,
+                        "orderable": false,
+                    },
                     {
                         "targets": [6],
                         "visible": true,
@@ -168,15 +235,17 @@
 							return '</button><button type="submit" data-id="'+row[0]+'" class="open-roleModal btn btn-sm btn-success float-right ml-1"><i class="fa fa-plus" aria-hidden="true">Add</i></button>';
 					},
                     },
-                    {
-                        "targets": [7],
+					{
+                        "targets": [8],
                         "visible": true,
                         "orderable": true,
 						"render": function ( data, type, row, meta ) {
+							var div="";
 							if(data!=null){
-							return data +'</button><button type="submit" class="btn btn-sm btn-danger float-right ml-1"><i class="fa fa-trash" aria-hidden="true">Del</i></button>';
+								div+=data +'</button><button type="submit" onclick=delDunit("'+row[0]+'","'+row[9]+'","'+row[10]+'") class="btn btn-sm btn-danger float-right ml-1"><i class="fa fa-trash" aria-hidden="true">Del</i></button>';
 							}
-							return '</button><button type="submit" class="btn btn-sm btn-success float-right ml-1"><i class="fa fa-plus" aria-hidden="true">Add</i></button>';
+							div+='</button><button type="submit" data-id="'+row[0]+'" class="open-dunitModal btn btn-sm btn-success float-right ml-1"><i class="fa fa-plus" aria-hidden="true">Add</i></button>';
+							return div;
 					},
                     },
 					
@@ -199,12 +268,10 @@
                 url: "http://localhost:8080/api/addRole",
                 data: JSON.stringify(data),
                 headers: { 'Content-Type': 'application/json' },
-                success: function(e){
+            }).then(function(){
 				$('#dataTableId').DataTable().ajax.reload();
 				$('#roleModal').modal('hide');
-
-				},
-            });
+			});
         }
 		function delRole() {
             var data = {
@@ -216,12 +283,26 @@
                 url: "http://localhost:8080/api/delRole",
                 data: JSON.stringify(data),
                 headers: { 'Content-Type': 'application/json' },
-                success: function(e){
+            }).then(function(){
 				$('#dataTableId').DataTable().ajax.reload();
 				$('#roledelModal').modal('hide');
-
-				},
-            });
+			});
+        }
+		function delDunit(userId,unitID,departmentID) {
+            var data = {
+                userId: userId,
+                unitId: unitID,
+				departmentId:departmentID,
+            };
+			console.log(data)
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/api/delDunit",
+                data: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' },
+            }).then(function(){
+				$('#dataTableId').DataTable().ajax.reload();
+			});
         }
 		 $(document).on("click", ".open-roleModal", function () {
             id = $(this).data('id');
@@ -233,6 +314,8 @@
             $('#roledelModal').modal('show');
             
         });
+	
+
     </script>
   
 </body>
