@@ -22,6 +22,11 @@
 				lang.admindtisactive="Aktif mi?";
 				lang.admindtrolename="Rolu";
 				lang.admindtunitname="Birim adi";
+				lang.managertablename="Oluşturan Adı";
+				lang.managertablesurname=" Oluşturan Soyadı";
+				lang.managertabledate=" Raporun Teslim Tarihi";
+				lang.managertablereport="Rapor";
+
         })();
 		
 		lang.translateeng = translateeng;
@@ -39,6 +44,10 @@
 				lang.admindtisactive="Is Active?";
 				lang.admindtrolename="Role";
 				lang.admindtunitname="Unit name";
+				lang.managertablename="Name";
+				lang.managertablesurname="Surname";
+				lang.managertabledate="Report Date Completed";
+				lang.managertablereport="Report";
 		}
 		lang.translatetr = translatetr;
 		function translatetr(){
@@ -55,6 +64,13 @@
 				lang.admindtisactive="Aktif mi?";
 				lang.admindtrolename="Rolu";
 				lang.admindtunitname="Birim adi";
+				lang.managertablename="Oluşturan Adı";
+				lang.managertablesurname=" Oluşturan Soyadı";
+				lang.managertabledate=" Raporun Teslim Tarihi";
+				lang.managertablereport="Rapor";
+
+
+
 		}
     }
 
