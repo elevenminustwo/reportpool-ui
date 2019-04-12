@@ -46,7 +46,7 @@
 	<div class="col">
 	 <div class="custom-file">
 		
-		<input id="multipleFileUploadInput" type="file" class="custom-file-input" multiple>
+		<input accept="image/*" id="multipleFileUploadInput" type="file" class="custom-file-input" multiple>
     <label id="multipleFileUploadLabel" class="custom-file-label" for="multipleFileUploadInput">Eklemek istediginiz resim varsa seçiniz...</label>
     <div class="invalid-feedback">Example invalid custom file feedback</div>
 		
@@ -98,6 +98,7 @@ $('#tarihAraligiTextarea').keyup( function() {
 	var menu = document.getElementById("dropdown");
 
 	var userId;
+	var savedReport;
 	$(document).ready(function() {
 
 		$.getJSON("http://localhost:8080/api/getUserIdOf/" + username, 
@@ -119,7 +120,28 @@ $('#tarihAraligiTextarea').keyup( function() {
 								menu.add(option);
 							}
 						}
-     			); 
+     			);
+
+					 $.getJSON("http://localhost:8080/api/getIncompleteReportOf/" + userId, 
+						
+						function(data) { 
+							savedReportObject = data;
+							console.log("Saved report: " + savedReportObject["title"]);
+
+							var body = savedReportObject["text"];
+							var ex1 = "Konu: ";
+							var ex3 = "Tarih Araligi: ";
+							var ex2 = "\n\n";
+							var konuRegex = new RegExp(ex1 + "(.*)" + ex2);
+							var kalanRegex = new RegExp(ex3 + "(.*)" + ex2 + "(.*)");
+							document.getElementById("konuTextarea").value = body.match(konuRegex)[1];
+							document.getElementById("tarihAraligiTextarea").value = body.match(kalanRegex)[1];
+							document.getElementById("icerikTextarea").value = body.match(kalanRegex)[2];
+													
+
+
+						}
+     			);  
 
 					}
      ); 
@@ -137,7 +159,7 @@ $('#tarihAraligiTextarea').keyup( function() {
 			event.preventDefault();
 			return;
 		}
-		addReport(true);
+		addReport(true, null);
 		//uploadMultipleFiles(files);
 
     event.preventDefault();
@@ -201,16 +223,17 @@ var reportForm = document.querySelector('#reportForm')
 
 	*/
 
-	function addReport(saveMode) {
-		var icerik = "Konu: " + document.getElementById("konuTextarea").value + "\n\nTarih Araliğı: " + document.getElementById("tarihAraligiTextarea").value + "\n\n" + document.getElementById("icerikTextarea").value;  
+	function addReport(saveMode, files) {
+		var icerik = "Konu: " + document.getElementById("konuTextarea").value + "\n\nTarih Araligi: " + document.getElementById("tarihAraligiTextarea").value + "\n\n" + document.getElementById("icerikTextarea").value;  
 		if(!saveMode) {
 			document.getElementById("konuTextarea").value = "";
 			document.getElementById("tarihAraligiTextarea").value = "";
 			document.getElementById("icerikTextarea").value = "";
 		}
 		
-		var reportObject = {"reportId":null,"title":"Rapor","text":"default","isCompleted":1,"dateCompleted":"2006-12-24","userId":1,"departmentunitId":1};
+		var reportObject = {"reportId":null,"title":"Rapor","text":"default","isCompleted":1,"dateCompleted":"2006-12-24","userId":1,"departmentunitId":null};
 		console.log("unit to save: " + unitArray[dropdown.selectedIndex - 1][0]);
+		
 		reportObject["departmentunitId"] = unitArray[dropdown.selectedIndex - 1][0];
 		reportObject["text"] = icerik;
 		reportObject["userId"] = userId;
@@ -219,9 +242,6 @@ var reportForm = document.querySelector('#reportForm')
 		var day = date.getDay();
 		var month = date.getMonth(); 
 		var year = date.getFullYear();
-		var hour = date.getHours;
-		var minute = date.getMinutes;
-		var second = date.getSeconds;
 		var dateString = year + "-" + (month + 1) + "-" + day;
 		console.log(dateString);
 		reportObject["dateCompleted"] = dateString;
@@ -230,22 +250,31 @@ var reportForm = document.querySelector('#reportForm')
 			reportObject["isCompleted"] = 0;
 		}
 
-
 		var request = new XMLHttpRequest();
 		var reportJson = JSON.stringify(reportObject);
-		
+
+		var formData = new FormData();
+		if(!saveMode) {
+    	for(var index = 0; index < files.length; index++) {
+      	  formData.append("files", files[index]);
+    	}
+		}
 		request.open("POST", "http://localhost:8080/savereport");
-		request.setRequestHeader("Content-type", "application/json");
-		request.send(reportJson);
+		//request.setRequestHeader("Content-type", "application/json");
+		// request.setRequestHeader("Content-type", "multipart/form-data");
+		request.setRequestHeader("report", reportJson);
 
-		document.getElementById("unitSelectError").innerHTML = "";
+		request.send(formData);
+
+
+
+		if(saveMode) {
+			document.getElementById("unitSelectError").innerHTML = "Kaydedildi.";
+		} else {
+			document.getElementById("unitSelectError").innerHTML = "Raporunuz başarıyla işlendi.";
+		}
 	}
-
-
-
-
-
-            
+   
 
 
 
@@ -260,7 +289,7 @@ var reportForm = document.querySelector('#reportForm')
 			event.preventDefault();
 			return;
 		}
-		addReport(false);
+		addReport(false, files);
 		//uploadMultipleFiles(files);
 
     event.preventDefault();
