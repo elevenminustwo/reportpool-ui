@@ -58,7 +58,7 @@
           type:"POST",
           contentType:"application/json",
         }).then(function(){
-			window.location.href = "user.html";
+			window.location.href = "user.html?username=" + username;
 			})
 			.catch(function (data) {
 			alert("Giris basarisiz!");
