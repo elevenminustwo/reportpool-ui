@@ -89,7 +89,7 @@
 			</div>
 		</div>
 	</div>
-
+ 
     <script>
       function submit(){
          var Email=document.getElementById("email").value;
@@ -111,10 +111,13 @@
       }
     </script>
 
-    <!-- Footer -->
-    <footer class="footer text-center">
-      <p class="copyright ">Copyright © 2019 {{lang.copyright}}</p>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <p class="copyright " style="width:auto">Copyright © 2019 {{lang.copyright}}</p>
+	
+	<button class="btn text-white" ng-click="lang.translateeng()"><img src="images/uk.png"> English</button>
+	<button class="btn text-white" ng-click="lang.translatetr()"><img src="images/turkey.png"> Turkce</button>
+  </footer>
 
 
 </body>

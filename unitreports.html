@@ -39,8 +39,6 @@
 <body>
 	<div class="container text-white">
   <h2>{{lang.managerheader}}</h2>
-  <button class="btn btn-danger" ng-click="lang.translateeng()">English</button>
-	<button class="btn btn-danger" ng-click="lang.translatetr()">Turkce</button>
 	
 	<div class="panel">
 		 <div class="panel-body">
@@ -65,7 +63,10 @@
 
   <!-- Footer -->
   <footer class="footer text-center">
-    <p class="copyright ">Copyright © 2019 {{lang.copyright}}</p>
+    <p class="copyright " style="width:auto">Copyright © 2019 {{lang.copyright}}</p>
+	
+	<button class="btn text-white" ng-click="lang.translateeng()"><img src="images/uk.png"> English</button>
+	<button class="btn text-white" ng-click="lang.translatetr()"><img src="images/turkey.png"> Turkce</button>
   </footer>
   
  <script>
