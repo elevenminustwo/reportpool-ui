@@ -15,6 +15,7 @@
 
   <!-- Custom CSS -->
   <link href="css/site.css" rel="stylesheet">
+  <link href="css/register.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -22,102 +23,74 @@
 </head>
 
 <body>
-
-  <body>
-
-    <div class="container">
-      <h2>Kullanıcı Kayıt Sayfası</h2>
-      <form name="myform">
-        <div class="form-group">
-          <div class="col-sm-5 ">
-            <input type="email" class="form-control" id="email" placeholder="email adresiniz" name="email">
+ <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Register</h5>
+            <form class="form-signin">
+               <label>Email Adresi:</label>
+               <div class="form-label-group">
+                <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+              </div>
+			  <label>Kullanıcı Adı:</label>
+              <div class="form-label-group">
+                <input type="name" id="kullanıcıadı" class="form-control" required>
+              </div> 
+               <label>Password:</label>
+              <div class="form-label-group">
+                <input type="password" id="sifre" class="form-control" required>
+              </div>
+			  <label>Confirm Password:</label>
+              <div class="form-label-group">
+                <input type="password" id="sifretekrar" class="form-control" required>
+              </div>
+			   <label>Name:</label>
+              <div class="form-label-group">
+                <input type="name" id="ad" class="form-control" required>
+              </div>
+			   <label>Surname:</label>
+              <div class="form-label-group">
+                <input type="name" id="soyad" class="form-control" required>
+              </div>
+			   <label>Sicil No:</label>
+              <div class="form-label-group">
+                <input type="name" id="sicilno" class="form-control" required>
+              </div>
+              <a onclick="submit()" class="btn btn-lg btn-primary btn-block text-uppercase text-white">Kayıt Ol</a>
+			</form>
           </div>
         </div>
-        <div class="form-group">
-          <div class="col-sm-5">
-            <input type="kullanıcıadı" class="form-control" id="kullanıcıadı" placeholder="kullanıcı adınız"
-              name="kullanıcıadı">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-5">
-            <input type="sifre" class="form-control" id="sifre" placeholder="sifrenizi giriniz" name="sifre">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-5">
-            <input type="sifretekrar" class="form-control" id="sifretekrar" placeholder="sifrenizi tekrar giriniz"
-              name="sifretekrar">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-5">
-            <input type="ad" class="form-control" id="ad" placeholder="adınız" name="ad">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-5">
-            <input type="soyad" class="form-control" id="soyad" placeholder="soyadınız" name="soyad">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-5">
-            <input type="sicilno" class="form-control" id="sicilno" placeholder="sicilno" name="sicilno">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-5">
-            <label for="sel1">Birim Seciniz</label>
-            <select class="form-control" id="sel1">
-              <option>SKS</option>
-              <option>Bilgi İslem</option>
-              <option>Kutuphane</option>
-              <option>Muhendislik</option>
-            </select>
-          </div>
-        </div>
-        <div class="btn-group">
-          <a onclick="submit()" class="btn btn-success"><text style="color:white;">Kayıt Ol</text></a>
-        </div>
-
-      </form>
+      </div>
     </div>
+  </div>
     <script>
       function submit(){
-        var data = {
-          Email:document.getElementById("email").value,
-          Username:document.getElementById("kullanıcıadı").value,
-          Password:document.getElementById("sifre").value,
-          Name:document.getElementById("ad").value,
-          Surname:document.getElementById("soyad").value,
-          No:document.getElementById("sicilno").value,
-        }
+         var Email=document.getElementById("email").value;
+         var Username=document.getElementById("kullanıcıadı").value;
+         var Password=document.getElementById("sifre").value;
+         var Name=document.getElementById("ad").value;
+         var Surname=document.getElementById("soyad").value;
+         var No=document.getElementById("sicilno").value;
         $.ajax({
-          url:"localhost:8080/register",
+          url:"http://localhost:8080/api/register/"+Email+"/"+Username+"/"+Password+"/"+Name+"/"+Surname,
           type:"POST",
           contentType:"application/json",
-          data:data,
-          success: function(resp){
-            console.log(resp)
-          },
-          error:function(req,status,err){
-            console.log("err")
-          }
-        })
-
-
+        }).then(function(){
+			window.location.href = "login.html";
+			})
+			.catch(function (data) {
+			alert("Giris basarisiz!");
+			});
       }
     </script>
 
     <!-- Footer -->
     <footer class="footer text-center">
-      <p class="copyright ">Copyright © 2019 Akdeniz Üniversitesi Tüm Hakları Saklıdır.</p>
+      <p class="copyright ">Copyright © 2019 {{lang.copyright}}</p>
     </footer>
 
-
-
-
-  </body>
 
 </body>
 

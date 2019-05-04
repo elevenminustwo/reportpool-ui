@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app" ng-controller="Language as lang">
 
 <head>
 
@@ -10,6 +10,12 @@
 
   <title>Manager Template</title>
 
+    <!-- AngularJs -->
+  <script src="vendor/angular-1.6.0/angular.min.js"></script>
+  <script src="js/app.config.js"></script>
+  <script src="js/app.module.js"></script>
+  <script src="js/language.js"></script>
+  
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
@@ -19,48 +25,46 @@
   
 </head>
 <body>
-	<body >
 	
 	<div class="container text-white">
-	<h2>Bilgi Islem Daire Baskanligi Rapor Giris Ekrani</h2>
+	<h2>{{lang.managerheader}}</h2>
+		<button class="btn btn-danger" ng-click="lang.translateeng()">English</button>
+	<button class="btn btn-danger" ng-click="lang.translatetr()">Turkce</button>
 	<form>
-	<label>Lutfen birim seciniz:</label>
+	<label>{{lang.managerplsunit}}:</label>
 	<select class="form-control">
-	<option>Unit Select</option>
+	<option>{{lang.optunit}}</option>
 	</select>
 	<div class="form-group">
-		<label for="exampleFormControlTextarea1">Raporunuz:</label>
+		<label for="exampleFormControlTextarea1">{{lang.managerreport}}:</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
 	</div>
 	<div class="row">
 	<div class="col">
 	 <div class="custom-file">
     <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-    <label class="custom-file-label" for="validatedCustomFile">Eklemek istediginiz resmi seciniz...</label>
+    <label class="custom-file-label" for="validatedCustomFile">{{lang.managerchoosefile}}...</label>
     <div class="invalid-feedback">Example invalid custom file feedback</div>
 	</div>
 	</div>
 	
 	</div>
 	<div class="text-right mt-3">
-	<button class="btn btn-success float-right ml-3 ">Raporu Isle</button>
-	<button class="btn btn-dark">Kaydet</button>
-	<button class="btn btn-warning float-left">Birim raporlarini incele</button>
+	<button class="btn btn-success float-right ml-3 ">{{lang.managercommitreport}}</button>
+	<button class="btn btn-dark">{{lang.managersave}}</button>
+	<button class="btn btn-warning float-left">{{lang.managercheckunitreports}}</button>
 	</div>
 	</form>
 	</div>
 
   <!-- Footer -->
   <footer class="footer text-center">
-    <p class="copyright ">Copyright © 2019 Akdeniz Üniversitesi Tüm Hakları Saklıdır.</p>
+    <p class="copyright ">Copyright © 2019 {{lang.copyright}}</p>
   </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
 
-
-
-</body>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app" ng-controller="Language as lang">
 
 <head>
 
@@ -9,6 +9,11 @@
   <meta name="author" content="">
 
   <title>Unit Reports Template</title>
+<!-- AngularJs -->
+<script src="vendor/angular-1.6.0/angular.min.js"></script>
+<script src="js/app.config.js"></script>
+<script src="js/app.module.js"></script>
+<script src="js/language.js"></script>
 
   <!-- Jquery for datatable -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -33,19 +38,19 @@
 </head>
 <body>
 	<div class="container text-white">
-	<h2>Bilgi Islem Daire Baskanligi Birim Rapor Ekrani</h2>
+  <h2>{{lang.managerheader}}</h2>
+  <button class="btn btn-danger" ng-click="lang.translateeng()">English</button>
+	<button class="btn btn-danger" ng-click="lang.translatetr()">Turkce</button>
 	
 	<div class="panel">
 		 <div class="panel-body">
 		 <table id="dataTableId" class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Departman Adı</th>
-                    <th>Birim Adı</th>
-                    <th>Oluşturan Adı</th>
-                    <th>Oluşturan Soyadı</th>
-                    <th>Raporun Teslim Tarihi</th>
-					          <th>Rapor</th>
+                    <th>{{lang.managertablename}}</th>         
+                    <th>{{lang.managertablesurname}}</th>          
+                    <th>{{lang.managertabledate}}</th>      
+					          <th>{{lang.managertablereport}}</th>           
                 </tr>
             </thead>
             <tbody>
@@ -60,10 +65,10 @@
 
   <!-- Footer -->
   <footer class="footer text-center">
-    <p class="copyright ">Copyright © 2019 Akdeniz Üniversitesi Tüm Hakları Saklıdır.</p>
+    <p class="copyright ">Copyright © 2019 {{lang.copyright}}</p>
   </footer>
   
-  <!-- <script>
+ <script>
         $(document).ready(function () {
             $("#dataTableId").DataTable(
 {
@@ -73,8 +78,8 @@
   "filter": true,
   "paging": true,
   "ajax": {
-    "url":"http://localhost:8080/unitreports/1",
-    "dataSrc" : "array",
+    "url":"http://localhost:8080/unitreports/1/1/",
+    "dataSrc" : "data",
   },
   "columnDefs": [
                     {
@@ -83,34 +88,25 @@
                         "orderable": true,
                     },
                     {
-                        "targets": [4],
+                        "targets": [1],
                         "visible": true,
                         "orderable": false,
                     },
                     {
-                        "targets": [5],
+                        "targets": [3],
                         "visible": true,
                         "orderable": false,
                     }
                     
                 ],
-  "columns":[
-    {"data":"departmentName" , "name":"departmentName" , "title":"Departman Adı"},
-    {"data":"unitName" , "name":"unitName" , "title":"Birim Adı"},
-    {"data":"userName" , "name":"userName" , "title":"Oluşturan Adı"},
-    {"data":"Surname" , "name":"Surname" , "title":"Oluşturan Soyadı"},
-    {"data":"DateCompleted" , "name":"DateCompleted" , "title":"Raporun Teslim Tarihi"},
-    {"data":"path" , "name":"path" , "title":"Rapor"},
-   
-  ],
-}
-            );
-            
 
+              
+                "pagingType": "full_numbers"
+          });
         });
 
 
     </script>
-  -->
+ 
 </body>
 </html>
