@@ -14,57 +14,82 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom CSS -->
-  <link href="css/site.css" rel="stylesheet">
   <link href="css/register.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
 
 
 </head>
 
 <body>
- <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
-          <div class="card-body">
-            <h5 class="card-title text-center">Register</h5>
-            <form class="form-signin">
-               <label>Email Adresi:</label>
-               <div class="form-label-group">
-                <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
-              </div>
-			  <label>Kullanıcı Adı:</label>
-              <div class="form-label-group">
-                <input type="name" id="kullanıcıadı" class="form-control" required>
-              </div> 
-               <label>Password:</label>
-              <div class="form-label-group">
-                <input type="password" id="sifre" class="form-control" required>
-              </div>
-			  <label>Confirm Password:</label>
-              <div class="form-label-group">
-                <input type="password" id="sifretekrar" class="form-control" required>
-              </div>
-			   <label>Name:</label>
-              <div class="form-label-group">
-                <input type="name" id="ad" class="form-control" required>
-              </div>
-			   <label>Surname:</label>
-              <div class="form-label-group">
-                <input type="name" id="soyad" class="form-control" required>
-              </div>
-			   <label>Sicil No:</label>
-              <div class="form-label-group">
-                <input type="name" id="sicilno" class="form-control" required>
-              </div>
-              <a onclick="submit()" class="btn btn-lg btn-primary btn-block text-uppercase text-white">Kayıt Ol</a>
-			</form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<div class="brand_logo_container">
+						<img src="images/akdenizlogo.png" class="brand_logo" alt="Logo">
+					</div>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form>
+						
+						<div class="input-group mb-4">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user-edit"></i></span>
+							</div>
+							<input type="text" name="" class="form-control input_user" id="kullanıcıadı" placeholder="kullanıcıadı">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="" class="form-control input_pass" id="sifre" placeholder="password">
+						</div>
+						<div class="input-group mb-4">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="text" name="" class="form-control input_pass" id="sifretekrar" placeholder="password(again)">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user-edit"></i></span>
+							</div>
+							<input type="text" name="" class="form-control input_user" id="ad" placeholder="name">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user-edit"></i></span>
+							</div>
+							<input type="text" name="" class="form-control input_user" id="soyad" placeholder="surname">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-at"></i></span>
+							</div>
+							<input type="text" name="" class="form-control input_user" id="email" placeholder="email">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user-edit"></i></span>
+							</div>
+							<input type="text" name="" class="form-control input_user" id="sicilno" placeholder="sicilno">
+						</div>
+					</form>
+				</div>
+				<div class="d-flex justify-content-center mt-3 login_container">
+					<button type="button" name="button" class="btn login_btn" onclick="submit()">Kayıt Ol</button>
+				</div>
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						 <a href="login.html" class="ml-2">Sign In</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <script>
       function submit(){
          var Email=document.getElementById("email").value;
