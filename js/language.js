@@ -9,35 +9,169 @@
         var lang = this;
 		
 		(function () {
-				lang.adminheader="Bilgi Islem Dairesi Yonetici Paneli";
-				lang.managerheader="Bilgi Islem Dairesi Yetkili Paneli";
-				lang.managerplsunit="Lutfen birim secin!";
-				lang.managerreport="Rapor Alani";
-				lang.managerchoosefile="Eklemek istediginiz dosyayi seciniz";
-				lang.managercheckunitreports ="Birim raporlarini incele";
-				lang.managercommitreport="Raporu isle";
-				lang.managersave="Kaydet";
-				lang.optunit="Biriminiz";
-				lang.del="Sil";
-				lang.admindtusername="Kullanici Adi";
-				lang.admindtname="Isim";
+				//Login====>
+				lang.logintitle="Giriş Ekranı";
+				lang.username="Kullanıcı Adı";
+				lang.password="Şifre";
+				lang.rememberme="Beni Hatırla";
+				lang.login="Giriş Yap";
+				lang.signup="Kayıt Ol";
+				lang.havenoaccount="Hesabınız yok mu?";
+				lang.forgotpsw="Şifrenizi mi unuttunuz?";
+				//<=========
+				
+				//Register====>
+				lang.registertitle="Kayıt Ekranı";
+				lang.regusername="Kullanıcı Adı";
+				lang.passwordre="Şifre(tekrar)";
+				lang.name="İsim";
+				lang.surname="Soyisim";
+				lang.email="Mail adresi";
+				lang.uniqueid="Sicil No";
+				lang.signin="Giriş Yap";
+				//<=========
+				
+				//Admin====>
+				lang.admintitle="Yönetici Ekranı";
+				lang.adminheader="Bilgi İşlem Dairesi Yönetici Paneli";
+				lang.admindtusername="Kullanıcı Adı";
+				lang.admindtname="İsim";
 				lang.admindtsurname="Soyisim";
 				lang.admindtemail="Mail Adresi";
 				lang.admindtisactive="Aktif mi?";
-				lang.admindtrolename="Rolu";
-				lang.admindtunitname="Birim adi";
-				lang.managertablename="Oluşturan Adı";
-				lang.managertablesurname=" Oluşturan Soyadı";
+				lang.admindtrolename="Rolü";
+				lang.admindtunitname="Birim adı";
+				lang.admindtdepartmentname="Departman adı";
+				lang.addrolemodal="Rol ekleme modülü";
+				lang.selectrole="Rol seçiniz";
+				lang.admin="Yönetici";
+				lang.manager="Birim Amiri";
+				lang.user="Kullanıcı";
+				lang.deleterolemodal="Rol silme modülü";
+				lang.sure="Emin misiniz?";
+				lang.depunitadd="Birim ekleme modülü";
+				lang.selectdepartment="Departman seçiniz";
+				lang.selectunit="Birim Seçiniz";
+				lang.deletedepmodal="Departman Silme Modülü";
+				//<=========
+				
+				//Modal====>
+				lang.add="Ekle";
+				lang.cancel="İptal";
+				lang.del="Sil";
+				//<=========
+				
+				//Create Departmant====>
+				lang.departmentcreatetitle="Departman Oluşturma Ekranı";
+				lang.depcreatehead="Departman Oluştur";
+				//<=========
+				
+				//Create Unit====>
+				lang.unitcreatetitle="Birim Oluşturma Ekranı";
+				lang.createunit="Birim Oluştur";
+				//<=========
+				
+				//Manager====>
+				lang.managertitle="Yetkili Ekranı";
+				lang.managerheader="Bilgi İşlem Dairesi Yetkili Paneli";
+				lang.managerplsunit="Lütfen birim seçin!";
+				lang.managerreport="Rapor Alanı";
+				lang.managerchoosefile="Eklemek istediğiniz dosyayı seçiniz";
+				lang.managercheckunitreports ="Birim raporlarını incele";
+				lang.managercommitreport="Raporu işle";
+				lang.managersave="Kaydet";
+				lang.optunit="Biriminiz";
+				//<=========
+				
+				//User====>
+				lang.usertitle="Kullanıcı Ekranı";
+				lang.userheader="Bilgi İşlem Daire Başkanlığı Rapor Giriş Ekranı";
+				lang.userplsunit="Lütfen birim seçin!";
+				lang.userreport="Rapor Alanı";
+				lang.userchoosefile="Eklemek istediğiniz dosyayi seçiniz";
+				lang.usercommitreport="Raporu işle";
+				lang.usersave="Kaydet";
+				//<=========
+				
+				//Unit Reports====>
+				lang.unitreportstemplate="Birim Raporları Ekranı";
+				lang.managertablename="Oluşturanın Adı";
+				lang.managertablesurname=" Oluşturanın Soyadı";
 				lang.managertabledate=" Raporun Teslim Tarihi";
 				lang.managertablereport="Rapor";
-				lang.admindtdepartmentname="Departman adi";
-				lang.copyright="Akdeniz Universitesi Tum Haklari Saklidir.";
-
+				//<=========
+				
+				//Footer====>
+				lang.copyright="Akdeniz Üniversitesi Tüm Hakları Saklıdır.";
+				//<=========
         })();
 		
 		lang.translateeng = translateeng;
 		function translateeng(){
+				//Login====>
+				lang.title="Login Template";
+				lang.username="Username";
+				lang.password="Password";
+				lang.rememberme="Remember me";
+				lang.login="Login";
+				lang.signup="Sign up";
+				lang.havenoaccount="Don't you have an account?";
+				lang.forgotpsw="Forgot your password?";
+				//<=========
+				
+				//Register====>
+				lang.registertitle="Register Template";
+				lang.regusername="Username";
+				lang.passwordre="Password(again)";
+				lang.name="Name";
+				lang.surname="Surname";
+				lang.email="Email";
+				lang.uniqueid="Unique ID";
+				lang.signin="Sign in";
+				//<=========
+				
+				//Admin====>
+				lang.admintitle="Admin Template";
 				lang.adminheader="Information Departmant Admin Panel";
+				lang.admindtusername="Username";
+				lang.admindtname="Name";
+				lang.admindtsurname="Surname";
+				lang.admindtemail="Email";
+				lang.admindtisactive="Is Active?";
+				lang.admindtrolename="Role";
+				lang.admindtunitname="Unit name";
+				lang.admindtdepartmentname="Department name";
+				lang.addrolemodal="Add Role Modal";
+				lang.selectrole="Select role";
+				lang.admin="Admin";
+				lang.manager="Manager";
+				lang.user="User";
+				lang.deleterolemodal="Role Delete Modal";
+				lang.sure="Are you sure?";
+				lang.depunitadd="Department Unit Add Modal";
+				lang.selectdepartment="Select department";
+				lang.selectunit="Select unit";
+				lang.deletedepmodal="Delete Department Modal";
+				//<=========
+				
+				//Modal====>
+				lang.add="Add";
+				lang.cancel="Cancel";
+				lang.del="Del";
+				//<=========
+				
+				//Create Departmant====>
+				lang.departmentcreatetitle="Department Create Template";
+				lang.depcreatehead="Department Create";
+				//<=========
+				
+				//Create Unit====>
+				lang.unitcreatetitle="Unit Create Template";
+				lang.createunit="Create Unit";
+				//<=========
+				
+				//Manager====>
+				lang.managertitle="Manager Template";
 				lang.managerheader="Information Departmant Manager Panel";
 				lang.managerplsunit="Please choose your unit!";
 				lang.managerreport="Report Area";
@@ -46,46 +180,129 @@
 				lang.managercommitreport="Commit report";
 				lang.managersave="Save";
 				lang.optunit="Your unit";
-				lang.del="Del";
-				lang.admindtusername="Username";
-				lang.admindtname="Name";
-				lang.admindtsurname="Surname";
-        lang.admindtemail="Email";
-				lang.admindtisactive="Is Active?";
-				lang.admindtrolename="Role";
-				lang.admindtunitname="Unit name";
+				//<=========
+				
+				//User====>
+				lang.usertitle="User Template";
+				lang.userheader="Information Departmant User Report Panel";
+				lang.userplsunit="Please choose your unit!";
+				lang.userreport="Report Area";
+				lang.userchoosefile="Choose file";
+				lang.usercommitreport="Commit report";
+				lang.usersave="Save";
+				//<=========
+				
+				//Unit Reports====>
+				lang.unitreportstemplate="Unit Reports Template";
 				lang.managertablename="Name";
 				lang.managertablesurname="Surname";
 				lang.managertabledate="Report Date Completed";
 				lang.managertablereport="Report";
-				lang.admindtdepartmentname="Department name";
+				//<=========
+				
+				//Footer====>
 				lang.copyright="Akdeniz University All rights reserved.";
+				//<=========
+				
+		
 		}
 		lang.translatetr = translatetr;
 		function translatetr(){
-				lang.adminheader="Bilgi Islem Dairesi Yonetici Paneli";
-				lang.managerheader="Bilgi Islem Dairesi Yetkili Paneli";
-				lang.managerplsunit="Lutfen birim secin!";
-				lang.managerreport="Rapor Alani";
-				lang.managerchoosefile="Eklemek istediginiz dosyayi seciniz";
-				lang.managercheckunitreports ="Birim raporlarini incele";
-				lang.managercommitreport="Raporu isle";
+				//Login====>
+				lang.logintitle="Giriş Ekranı";
+				lang.username="Kullanıcı Adı";
+				lang.password="Şifre";
+				lang.rememberme="Beni Hatırla";
+				lang.login="Giriş Yap";
+				lang.signup="Kayıt Ol";
+				lang.havenoaccount="Hesabınız yok mu?";
+				lang.forgotpsw="Şifrenizi mi unuttunuz?";
+				//<=========
+				
+				//Register====>
+				lang.registertitle="Kayıt Ekranı";
+				lang.regusername="Kullanıcı Adı";
+				lang.passwordre="Şifre(tekrar)";
+				lang.name="İsim";
+				lang.surname="Soyisim";
+				lang.email="Mail adresi";
+				lang.uniqueid="Sicil No";
+				lang.signin="Giriş Yap";
+				//<=========
+				
+				//Admin====>
+				lang.admintitle="Yönetici Ekranı";
+				lang.adminheader="Bilgi İşlem Dairesi Yönetici Paneli";
+				lang.admindtusername="Kullanıcı Adı";
+				lang.admindtname="İsim";
+				lang.admindtsurname="Soyisim";
+				lang.admindtemail="Mail Adresi";
+				lang.admindtisactive="Aktif mi?";
+				lang.admindtrolename="Rolü";
+				lang.admindtunitname="Birim adı";
+				lang.admindtdepartmentname="Departman adı";
+				lang.addrolemodal="Rol ekleme modülü";
+				lang.selectrole="Rol seçiniz";
+				lang.admin="Yönetici";
+				lang.manager="Birim Amiri";
+				lang.user="Kullanıcı";
+				lang.deleterolemodal="Rol silme modülü";
+				lang.sure="Emin misiniz?";
+				lang.depunitadd="Birim ekleme modülü";
+				lang.selectdepartment="Departman seçiniz";
+				lang.selectunit="Birim Seçiniz";
+				lang.deletedepmodal="Departman Silme Modülü";
+				//<=========
+				
+				//Modal====>
+				lang.add="Ekle";
+				lang.cancel="İptal";
+				lang.del="Sil";
+				//<=========
+				
+				//Create Departmant====>
+				lang.departmentcreatetitle="Departman Oluşturma Ekranı";
+				lang.depcreatehead="Departman Oluştur";
+				//<=========
+				
+				//Create Unit====>
+				lang.unitcreatetitle="Birim Oluşturma Ekranı";
+				lang.createunit="Birim Oluştur";
+				//<=========
+				
+				//Manager====>
+				lang.managertitle="Yetkili Ekranı";
+				lang.managerheader="Bilgi İşlem Dairesi Yetkili Paneli";
+				lang.managerplsunit="Lütfen birim seçin!";
+				lang.managerreport="Rapor Alanı";
+				lang.managerchoosefile="Eklemek istediğiniz dosyayı seçiniz";
+				lang.managercheckunitreports ="Birim raporlarını incele";
+				lang.managercommitreport="Raporu işle";
 				lang.managersave="Kaydet";
 				lang.optunit="Biriminiz";
-				lang.del="Sil";
-				lang.admindtusername="Kullanici Adi";
-				lang.admindtname="Isim";
-				lang.admindtsurname="Soyisim";
-        lang.admindtemail="Mail Adresi";
-				lang.admindtisactive="Aktif mi?";
-				lang.admindtrolename="Rolu";
-				lang.admindtunitname="Birim adi";
-				lang.managertablename="Oluşturan Adı";
-				lang.managertablesurname=" Oluşturan Soyadı";
+				//<=========
+				
+				//User====>
+				lang.usertitle="Kullanıcı Ekranı";
+				lang.userheader="Bilgi İşlem Daire Başkanlığı Rapor Giriş Ekranı";
+				lang.userplsunit="Lütfen birim seçin!";
+				lang.userreport="Rapor Alanı";
+				lang.userchoosefile="Eklemek istediğiniz dosyayi seçiniz";
+				lang.usercommitreport="Raporu işle";
+				lang.usersave="Kaydet";
+				//<=========
+				
+				//Unit Reports====>
+				lang.unitreportstemplate="Birim Raporları Ekranı";
+				lang.managertablename="Oluşturanın Adı";
+				lang.managertablesurname=" Oluşturanın Soyadı";
 				lang.managertabledate=" Raporun Teslim Tarihi";
 				lang.managertablereport="Rapor";
-				lang.admindtdepartmentname="Departman adi";
-				lang.copyright="Akdeniz Universitesi Tum Haklari Saklidir.";
+				//<=========
+				
+				//Footer====>
+				lang.copyright="Akdeniz Üniversitesi Tüm Hakları Saklıdır.";
+				//<=========
 		}
     }
 
