@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app" ng-controller="Language as lang">
 
 <head>
 
@@ -8,8 +8,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Login Template</title>
-
+  <title>{{lang.logintitle}}</title>
+<!-- AngularJs -->
+<script src="vendor/angular-1.6.0/angular.min.js"></script>
+<script src="js/app.config.js"></script>
+<script src="js/app.module.js"></script>
+<script src="js/language.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -37,31 +41,31 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="username">
+							<input type="text" name="" class="form-control input_user" value="" placeholder="{{lang.username}}">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="password">
+							<input type="password" name="" class="form-control input_pass" value="" placeholder="{{lang.password}}">
 						</div>
 						<div class="form-group">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="customControlInline">
-								<label class="custom-control-label" for="customControlInline">Remember me</label>
+								<label class="custom-control-label" for="customControlInline">{{lang.rememberme}}</label>
 							</div>
 						</div>
 					</form>
 				</div>
 				<div class="d-flex justify-content-center mt-3 login_container">
-					<button type="button" name="button" class="btn login_btn" onclick="login()">Login</button>
+					<button type="button" name="button" class="btn login_btn" onclick="login()">{{lang.login}}</button>
 				</div>
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="register.html" class="ml-2">Sign Up</a>
+						{{lang.havenoaccount}} <a href="register.html" class="ml-2">{{lang.signup}}</a>
 					</div>
 					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
+						<a href="#">{{lang.forgotpsw}}</a>
 					</div>
 				</div>
 			</div>

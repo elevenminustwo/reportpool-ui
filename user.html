@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app" ng-controller="Language as lang">
 
 <head>
 
@@ -8,10 +8,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>User Template</title>
+  <title>{{lang.usertitle}}</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<!-- AngularJs -->
+<script src="vendor/angular-1.6.0/angular.min.js"></script>
+<script src="js/app.config.js"></script>
+<script src="js/app.module.js"></script>
+<script src="js/language.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
@@ -25,15 +29,15 @@
 	
 	<div class="container text-white">
 	
-	<h2>Bilgi Islem Daire Baskanligi Rapor Giris Ekrani</h2>
+	<h2>{{lang.userheader}}</h2>
 	<form name="reportForm">
-	<label>Lutfen birim seciniz:</label>
+	<label>{{lang.userplsunit}}:</label>
 	<select id="dropdown" class="form-control">
 	<option></option>
 	</select>
 	<div id="unitSelectError" class="text-danger"></div>
 	<div class="form-group">
-		<label for="exampleFormControlTextarea1">Raporunuz:</label>
+		<label for="exampleFormControlTextarea1">{{lang.userreport}}:</label>
 		<!-- Gives the illusion that there is only one big text area but in fact there are 6 on top of eachother, borders and radii are aranged to give this illusion -->
 		<textarea class="form-control" id="konuHeader" rows="1" style="border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; background-color:#FFF !important;" disabled>#[İşin Konusu]</textarea>
 		<textarea class="form-control" id="konuTextarea" rows="1" style="border-top: none; border-top-right-radius: 0px; border-top-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; box-shadow: none; overflow: hidden;"></textarea>
@@ -62,8 +66,8 @@
 	</div>
 	</div>
 	<div class="text-right mt-3">
-	<button type="submit" id="submitButton" class="btn btn-success float-right ml-3">Raporu İşle</button>
-	<button id="saveButton" class="btn btn-dark">Kaydet</button>
+	<button type="submit" id="submitButton" class="btn btn-success float-right ml-3">{{lang.usercommitreport}}</button>
+	<button id="saveButton" class="btn btn-dark">{{lang.usersave}}</button>
 	</div>
 	</form>
 	</div>

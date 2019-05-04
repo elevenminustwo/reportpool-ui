@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app" ng-controller="Language as lang">
 
 <head>
 
@@ -8,8 +8,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Kullanıcı Kayıt Template</title>
-
+  <title>{{lang.registertitle}}</title>
+<!-- AngularJs -->
+<script src="vendor/angular-1.6.0/angular.min.js"></script>
+<script src="js/app.config.js"></script>
+<script src="js/app.module.js"></script>
+<script src="js/language.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,52 +42,52 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user-edit"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" id="kullanıcıadı" placeholder="kullanıcıadı">
+							<input type="text" name="" class="form-control input_user" id="kullanıcıadı" placeholder="{{lang.regusername}}">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" id="sifre" placeholder="password">
+							<input type="password" name="" class="form-control input_pass" id="sifre" placeholder="{{lang.password}}">
 						</div>
 						<div class="input-group mb-4">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_pass" id="sifretekrar" placeholder="password(again)">
+							<input type="text" name="" class="form-control input_pass" id="sifretekrar" placeholder="{{lang.passwordre}}">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user-edit"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" id="ad" placeholder="name">
+							<input type="text" name="" class="form-control input_user" id="ad" placeholder="{{lang.name}}">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user-edit"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" id="soyad" placeholder="surname">
+							<input type="text" name="" class="form-control input_user" id="soyad" placeholder="{{lang.surname}}">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-at"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" id="email" placeholder="email">
+							<input type="text" name="" class="form-control input_user" id="email" placeholder="{{lang.email}}">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user-edit"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" id="sicilno" placeholder="sicilno">
+							<input type="text" name="" class="form-control input_user" id="sicilno" placeholder="{{lang.uniqueid}}">
 						</div>
 					</form>
 				</div>
 				<div class="d-flex justify-content-center mt-3 login_container">
-					<button type="button" name="button" class="btn login_btn" onclick="submit()">Kayıt Ol</button>
+					<button type="button" name="button" class="btn login_btn" onclick="submit()">{{lang.signup}}</button>
 				</div>
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						 <a href="login.html" class="ml-2">Sign In</a>
+						 <a href="login.html" class="ml-2">{{lang.signin}}</a>
 					</div>
 				</div>
 			</div>

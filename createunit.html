@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app" ng-controller="Language as lang">
 
 <head>
 
@@ -8,10 +8,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>UnitCreate Template</title>
+  <title>{{lang.unitcreatetitle}}</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<!-- AngularJs -->
+<script src="vendor/angular-1.6.0/angular.min.js"></script>
+<script src="js/app.config.js"></script>
+<script src="js/app.module.js"></script>
+<script src="js/language.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
@@ -25,7 +29,7 @@
 	
 	<div class="container text-white">
 	
-	<h2>Create Unit</h2>
+	<h2>{{lang.createunit}}</h2>
 	
 	</div>
 

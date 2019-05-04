@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin Template</title>
+  <title>{{lang.admintitle}}</title>
   
   <!-- AngularJs -->
   <script src="vendor/angular-1.6.0/angular.min.js"></script>
@@ -88,24 +88,24 @@
             <div class="modal-dialog modal-dialog-center">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h class="modal-title text-muted">Add Role Modal</h>
+                        <h class="modal-title text-muted">{{lang.addrolemodal}}</h>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <form>
                         <div class="form-group m-3">
-                                <label for="selectedrole">Select role:</label>
+                                <label for="selectedrole">{{lang.selectrole}}:</label>
 								<select class="form-control form-control-sm" id="selectedrole">
-								<option value="1">Admin</option>
-								<option value="2">Manager</option>
-								<option value="3">User</option>
+								<option value="1">{{lang.admin}}</option>
+								<option value="2">{{lang.manager}}</option>
+								<option value="3">{{lang.user}}</option>
 								</select>
                         </div>
                     </form>
                     <div class="modal-footer">
 					<button class="btn btn-success" onclick="addRole()">
-                            <i class="fa fa-plus" aria-hidden="true">Add</i>
+                            <i class="fa fa-plus" aria-hidden="true">{{lang.add}}</i>
                         </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{lang.cancel}}</button>
                     </div>
 
                 </div>
@@ -118,19 +118,19 @@
             <div class="modal-dialog modal-dialog-center">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h class="modal-title text-muted">Delete Role Modal</h>
+                        <h class="modal-title text-muted">{{lang.deleterolemodal}}</h>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 					<form>
                         <div class="form-group m-3 text-center">
-                                <label>Are you sure?</label>
+                                <label>{{lang.sure}}</label>
                         </div>
                     </form>
                     <div class="modal-footer">
 					<button class="btn btn btn-danger" onclick="delRole()">
                             <i class="fa fa-trash" aria-hidden="true">{{lang.del}}</i>
                         </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{lang.cancel}}</button>
                     </div>
 
                 </div>
@@ -142,25 +142,25 @@
             <div class="modal-dialog modal-dialog-center">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h class="modal-title text-muted">Add Department Unit Modal</h>
+                        <h class="modal-title text-muted">{{lang.depunitadd}}</h>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <form>
                         <div class="form-group m-3">
-                                <label for="selectedDepartment">Select department:</label>
+                                <label for="selectedDepartment">{{lang.selectdepartment}}:</label>
 								<select class="form-control" ng-options="f.name for f in ctrl.Deparments" ng-model="selectedDepartment" ng-change="ctrl.getUnits(selectedDepartment.departmentId)"></select>
                         </div>
 						<div class="form-group m-3">
-                                <label for="selectedUnit">Select unit:</label>
+                                <label for="selectedUnit">{{lang.selectunit}}:</label>
 								 <select class="form-control" ng-options="f[0] for f in ctrl.Units" ng-model="selectedUnit"></select>
 								</select>
                         </div>
                     </form>
                     <div class="modal-footer">
 					<button class="btn btn-success" ng-click="ctrl.addDunit(selectedDepartment.departmentId,selectedUnit[1])">
-                            <i class="fa fa-plus" aria-hidden="true">Add</i>
+                            <i class="fa fa-plus" aria-hidden="true">{{lang.add}}</i>
                         </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{lang.cancel}}</button>
                     </div>
 
                 </div>
@@ -171,19 +171,19 @@
             <div class="modal-dialog modal-dialog-center">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h class="modal-title text-muted">Delete Department Modal</h>
+                        <h class="modal-title text-muted">{{lang.deletedepmodal}}</h>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 					<form>
                         <div class="form-group m-3 text-center">
-                                <label>Are you sure?</label>
+                                <label>{{lang.sure}}?</label>
                         </div>
                     </form>
                     <div class="modal-footer">
 					<button class="btn btn btn-danger" onclick="delDunit()">
                             <i class="fa fa-trash" aria-hidden="true">{{lang.del}}</i>
                         </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{lang.cancel}}</button>
                     </div>
 
                 </div>
@@ -231,9 +231,9 @@
                         "orderable": true,
 						"render": function ( data, type, row, meta ) {
 							if(data!=null){
-							return data +'</button><button type="submit" data-id="'+row[0]+'" class="open-roledelModal btn btn-sm btn-danger float-right ml-1"><i class="fa fa-trash" aria-hidden="true">Del</i></button>';
+							return data +'</button><button type="submit" data-id="'+row[0]+'" class="open-roledelModal btn btn-sm btn-danger float-right ml-1"><i class="fa fa-trash" aria-hidden="true"></i></button>';
 							}
-							return '</button><button type="submit" data-id="'+row[0]+'" class="open-roleModal btn btn-sm btn-success float-right ml-1"><i class="fa fa-plus" aria-hidden="true">Add</i></button>';
+							return '</button><button type="submit" data-id="'+row[0]+'" class="open-roleModal btn btn-sm btn-success float-right ml-1"><i class="fa fa-plus" aria-hidden="true"></i></button>';
 					},
                     },
 					{
@@ -243,9 +243,9 @@
 						"render": function ( data, type, row, meta ) {
 							var div="";
 							if(data!=null){
-								div+=data +'</button><button type="submit" onclick=delDunit("'+row[0]+'","'+row[9]+'","'+row[10]+'") class="btn btn-sm btn-danger float-right ml-1"><i class="fa fa-trash" aria-hidden="true">Del</i></button>';
+								div+=data +'</button><button type="submit" onclick=delDunit("'+row[0]+'","'+row[9]+'","'+row[10]+'") class="btn btn-sm btn-danger float-right ml-1"><i class="fa fa-trash" aria-hidden="true"></i></button>';
 							}
-							div+='</button><button type="submit" data-id="'+row[0]+'" class="open-dunitModal btn btn-sm btn-success float-right ml-1"><i class="fa fa-plus" aria-hidden="true">Add</i></button>';
+							div+='</button><button type="submit" data-id="'+row[0]+'" class="open-dunitModal btn btn-sm btn-success float-right ml-1"><i class="fa fa-plus" aria-hidden="true"></i></button>';
 							return div;
 					},
                     },
