@@ -68,7 +68,6 @@
 	<div class="text-right mt-3">
 	<button type="submit" id="submitButton" class="btn btn-success float-right ml-3">{{lang.usercommitreport}}</button>
 	<button id="saveButton" class="btn btn-dark">{{lang.usersave}}</button>
-	<button id="toReportsButton" class="btn btn-warning float-left">{{lang.managercheckunitreports}}</button>
 	</div>
 
 	
@@ -209,7 +208,7 @@ $('#tarihAraligiTextarea').keyup( function() {
 		reportObject["userId"] = userId;
 
 		var date = new Date();
-		var day = date.getDay();
+		var day = date.getDate();
 		var month = date.getMonth(); 
 		var year = date.getFullYear();
 		var dateString = year + "-" + (month + 1) + "-" + day;

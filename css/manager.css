@@ -58,3 +58,23 @@ hr {
 #dataTableId{
 	background:#FFFFFF;
 }
+
+table.dataTable span.highlight {
+	background-color: #c7e5f0;
+	border-radius: 0.28571429rem;
+  }
+  
+  table.dataTable span.column_highlight {
+	background-color: #c7e5f0;
+	border-radius: 0.28571429rem;
+  }
+
+  /**
+ * Styles for datatables.mark.js
+ */
+
+mark {
+	background: orange;
+	color: black;
+	padding: 0;
+  }

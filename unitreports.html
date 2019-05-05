@@ -17,6 +17,7 @@
 
   <!-- Jquery for datatable -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/jquery.highlight.js"></script>
   
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +40,11 @@
 <body>
 	<div class="container text-white">
   <h2>{{lang.managerheader}}</h2>
+  <label>{{lang.managerplsunit}}:</label>
+	<select id="dropdown" onchange="getData()" class="form-control">
+	<option></option>
+	</select>
+	<div id="unitSelectError" class="text-danger"></div>
 	
 	<div class="panel">
 		 <div class="panel-body">
@@ -72,41 +78,120 @@
   </footer>
   
  <script>
-        $(document).ready(function () {
-            $("#dataTableId").DataTable(
-{
-  "processing" : false,
-  "serverSide" :true,
-  "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
-  "filter": true,
-  "paging": true,
-  "ajax": {
-    "url":"http://localhost:8080/unitreports/1/1/",
-    "dataSrc" : "data",
-  },
-  "columnDefs": [
-                    {
-                        "targets": [0],
-                        "visible": true,
-                        "orderable": true,
-                    },
-                    {
-                        "targets": [1],
-                        "visible": true,
-                        "orderable": false,
-                    },
-                    {
-                        "targets": [3],
-                        "visible": true,
-                        "orderable": false,
-                    }
-                    
-                ],
+
+
+
+  	// gets username from the page URL
+	  var queryString = location.search;
+	  var urlParams = new URLSearchParams(queryString);
+	  var username = urlParams.get('username');
+
+
+	  // initialize dropdown menu for units
+	  var unitArray;
+	  var menu = document.getElementById("dropdown");
+
+    var userId;
+    $(document).ready(function () {
+
+
+      // 1) Once page is opened, connect to REST API and get user id from username
+		  $.getJSON("http://localhost:8080/api/getUserIdOf/" + username, 
+					function(data) { 
+						
+						userId = data;
+						console.log("Got id: " + userId);
+
+						// 2) Then get user's units using the user id
+						$.getJSON("http://localhost:8080/api/getUserUnits/" + userId, 
+						
+						function(data) { 
+							console.log(data);
+							unitArray = data;
+						
+							for(var i = 0; i < unitArray.length; i++) {
+								console.log(unitArray[i][1]);
+								var option = document.createElement("option");
+								option.text = unitArray[i][1] + "/" + unitArray[i][2];
+								menu.add(option);
+							}
+						}
+     			); 
+
+					}
+     );
+     
+
+
+    });
+
+
+
+
+    var table;
+
+    function getData() {
+
+        var selectedIndex = dropdown.selectedIndex;
+        if(selectedIndex == 0) {
+          return;
+        }
+        var dept = unitArray[selectedIndex - 1][3];
+        var unit = unitArray[selectedIndex - 1][4];
+
+        if(table != null) {
+          table.destroy();
+        }
+
+        table = $("#dataTableId").DataTable(
+          {
+            "processing" : false,
+            "serverSide" :true,
+            searchHighlight: true,
+            mark: true,
+            "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+            "filter": true,
+            "paging": true,
+            "ajax": {
+              "url":"http://localhost:8080/unitreports/" + dept + "/" + unit + "/",
+              "dataSrc" : "data",
+            },
+            "columnDefs": [
+                          {
+                            "targets": [0],
+                            "visible": true,
+                            "orderable": true,
+                          },
+                          {
+                            "targets": [1],
+                            "visible": true,
+                            "orderable": false,
+                          },
+                          {
+                            "targets": [3],
+                            "visible": true,
+                            "orderable": false,
+                          }
+                        
+                          ],
+
+                  
+                          "pagingType": "full_numbers"
+              });
 
               
-                "pagingType": "full_numbers"
-          });
-        });
+              table.on( 'draw', function () {
+                var body = $( table.table().body() );
+                body.unhighlight();
+                body.highlight( table.search().split(" ") );  
+              } );
+              
+
+
+
+              
+
+    }
 
 
     </script>
