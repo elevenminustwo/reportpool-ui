@@ -68,7 +68,11 @@
 	<div class="text-right mt-3">
 	<button type="submit" id="submitButton" class="btn btn-success float-right ml-3">{{lang.usercommitreport}}</button>
 	<button id="saveButton" class="btn btn-dark">{{lang.usersave}}</button>
+	<button id="toReportsButton" class="btn btn-warning float-left">{{lang.managercheckunitreports}}</button>
 	</div>
+
+	
+
 	</form>
 	</div>
 
@@ -192,7 +196,7 @@ $('#tarihAraligiTextarea').keyup( function() {
 	// saves report to REST API, if saveMode is true, saves as incompleted, so user can come back and continue where he left off
 	// if save mode false, report is recorded to database along with acompanying image files
 	function addReport(saveMode, files) {
-		var icerik = "Konu: " + document.getElementById("konuTextarea").value + "\n\nTarih Araligi: " + document.getElementById("tarihAraligiTextarea").value + "\n\n" + document.getElementById("icerikTextarea").value;  
+		var icerik = "Konu: " + document.getElementById("konuTextarea").value + "\nTarih Araligi: " + document.getElementById("tarihAraligiTextarea").value + "\n" + document.getElementById("icerikTextarea").value;  
 
 		
 		// fill up object with necessary data --------------------

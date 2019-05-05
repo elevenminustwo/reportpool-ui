@@ -30,7 +30,21 @@
 				lang.uniqueid="Sicil No";
 				lang.signin="Giriş Yap";
 				//<=========
-				
+
+				//Password Reset====>
+				lang.passwordresettitle="Şifre Yenileme Ekranı";
+				lang.enternewpassword="yeni şifreniz";
+				lang.enternewpasswordagain="yeni şifreniz tekrar";
+				lang.passwordresetbutton="Yenile";
+				//<==========
+
+				//Password Forgot====>
+				lang.passwordforgottitle="Şifre Talep Ekranı";
+				lang.enteryouremailforpassword="email adresiniz";
+				lang.passwordresetrequestbutton="Şifre Yenileme Talebi";
+				//<==========
+
+
 				//Admin====>
 				lang.admintitle="Yönetici Ekranı";
 				lang.adminheader="Bilgi İşlem Dairesi Yönetici Paneli";
@@ -129,6 +143,19 @@
 				lang.uniqueid="Unique ID";
 				lang.signin="Sign in";
 				//<=========
+
+				//Password Reset====>
+				lang.passwordresettitle="Password Reset Screen";
+				lang.enternewpassword="new password";
+				lang.enternewpasswordagain="new password again";
+				lang.passwordresetbutton="Reset";
+				//<=========
+
+				//Password Forgot====>
+				lang.passwordforgottitle="Password Change Request Screen";
+				lang.enteryouremailforpassword="your email";
+				lang.passwordresetrequestbutton="Request Password Reset";
+				//<==========
 				
 				//Admin====>
 				lang.admintitle="Admin Template";
@@ -229,6 +256,19 @@
 				lang.uniqueid="Sicil No";
 				lang.signin="Giriş Yap";
 				//<=========
+
+				//Password Reset====>
+				lang.passwordresettitle="Şifre Yenileme Ekranı";
+				lang.enternewpassword="yeni şifreniz";
+				lang.enternewpasswordagain="yeni şifreniz tekrar";
+				lang.passwordresetbutton="Yenile";
+				//<=========
+
+				//Password Forgot====>
+				lang.passwordforgottitle="Şifre Talep Ekranı";
+				lang.enteryouremailforpassword="email adresiniz";
+				lang.passwordresetrequestbutton="Şifre Yenileme Talebi";
+				//<==========
 				
 				//Admin====>
 				lang.admintitle="Yönetici Ekranı";
