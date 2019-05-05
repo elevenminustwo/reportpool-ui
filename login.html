@@ -80,8 +80,16 @@
           url:"http://localhost:8080/api/login/"+username+"/"+password,
           type:"POST",
           contentType:"application/json",
-        }).then(function(){
+        }).then(function(response){
+			if(response=="Admin"){
+			window.location.href = "admin.html?username=" + username;
+			}
+			else if(response=="Manager"){
+			window.location.href = "manager.html?username=" + username;
+			}
+			else{
 			window.location.href = "user.html?username=" + username;
+			}
 			})
 			.catch(function (data) {
 			alert("Giris basarisiz!");
