@@ -117,6 +117,7 @@
 				
 				//Footer====>
 				lang.copyright="Akdeniz Üniversitesi Tüm Hakları Saklıdır.";
+				lang.logout="Çıkış Yap";
 				//<=========
         })();
 		
@@ -229,6 +230,7 @@
 				
 				//Footer====>
 				lang.copyright="Akdeniz University All rights reserved.";
+				lang.logout="Log Out";
 				//<=========
 				
 		
@@ -342,6 +344,7 @@
 				
 				//Footer====>
 				lang.copyright="Akdeniz Üniversitesi Tüm Hakları Saklıdır.";
+				lang.logout="Çıkış Yap";
 				//<=========
 		}
     }
