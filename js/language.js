@@ -106,6 +106,13 @@
 				lang.usercommitreport="Raporu işle";
 				lang.usersave="Kaydet";
 				//<=========
+
+				//Manager and User Report Entry and Upload Tags
+				lang.subjectofjob="#[İşin Konusu]";
+				lang.dateofjob="#[İşin Tarih Aralığı] (Örneğin: 1 Mayıs 2019'tan 7 Mayıs 2019'a kadar)";
+				lang.thingsdoneinjob="#[Yapılanlar]";
+				lang.uploadtagforimages="Eklemek istediginiz resim varsa seçiniz (Resimler en fazla 16MB olabilir)";
+				//<=========
 				
 				//Unit Reports====>
 				lang.unitreportstemplate="Birim Raporları Ekranı";
@@ -220,6 +227,13 @@
 				lang.usersave="Save";
 				//<=========
 				
+				//Manager and User Report Entry and Upload Tags
+				lang.subjectofjob="#[Subject of the job]";
+				lang.dateofjob="#[Date period of the job] (Ex: May 1 2019 to May 2 2019)";
+				lang.thingsdoneinjob="#[Things done]";
+				lang.uploadtagforimages="Select if you would like to add images (Max. size 16MB)";
+				//<=========
+
 				//Unit Reports====>
 				lang.unitreportstemplate="Unit Reports Template";
 				lang.managertablename="Name";
@@ -332,6 +346,13 @@
 				lang.userchoosefile="Eklemek istediğiniz dosyayi seçiniz";
 				lang.usercommitreport="Raporu işle";
 				lang.usersave="Kaydet";
+				//<=========
+
+				//Manager and User Report Entry and Upload Tags
+				lang.subjectofjob="#[İşin Konusu]";
+				lang.dateofjob="#[İşin Tarih Aralığı] (Örneğin: 1 Mayıs 2019'tan 7 Mayıs 2019'a kadar)";
+				lang.thingsdoneinjob="#[Yapılanlar]";
+				lang.uploadtagforimages="Eklemek istediginiz resim varsa seçiniz (Resimler en fazla 16MB olabilir)";
 				//<=========
 				
 				//Unit Reports====>
