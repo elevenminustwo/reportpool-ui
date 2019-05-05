@@ -109,7 +109,7 @@
 		lang.translateeng = translateeng;
 		function translateeng(){
 				//Login====>
-				lang.title="Login Template";
+				lang.logintitle="Login Template";
 				lang.username="Username";
 				lang.password="Password";
 				lang.rememberme="Remember me";
