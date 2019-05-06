@@ -10,7 +10,7 @@ body,
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #f39c12;
+			background: #fdd043;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -38,14 +38,14 @@ body,
 			border-radius: 50%;
 			border: 2px solid white;
 			filter: contrast(2);
-			background: rgb(135, 43, 33);
+			background: #085f63;
 		}
 		.form_container {
 			margin-top: 100px;
 		}
 		.login_btn {
 			width: 100%;
-			background: #c0392b !important;
+			background: #085f63 !important;
 			color: white !important;
 		}
 		.login_btn:focus {
@@ -56,7 +56,7 @@ body,
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #c0392b !important;
+			background: #085f63 !important;
 			color: white !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
@@ -67,7 +67,7 @@ body,
 			outline: 0px !important;
 		}
 		.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-			background-color: #c0392b !important;
+			background-color: #085f63 !important;
 		}
 footer {
 		z-index:1000;
