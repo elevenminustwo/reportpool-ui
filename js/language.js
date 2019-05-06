@@ -116,8 +116,8 @@
 				
 				//Unit Reports====>
 				lang.unitreportstemplate="Birim Raporları Ekranı";
-				lang.managertablename="Oluşturanın Adı";
-				lang.managertablesurname=" Oluşturanın Soyadı";
+				lang.managertableusername="Oluşturanın Kullanıcı Adı";
+				lang.managertablename="Adı Soyadı";
 				lang.managertabledate=" Raporun Teslim Tarihi";
 				lang.managertablereport="Rapor";
 				//<=========
@@ -236,8 +236,8 @@
 
 				//Unit Reports====>
 				lang.unitreportstemplate="Unit Reports Template";
-				lang.managertablename="Name";
-				lang.managertablesurname="Surname";
+				lang.managertableusername="Username";
+				lang.managertablename="Full Name";
 				lang.managertabledate="Report Date Completed";
 				lang.managertablereport="Report";
 				//<=========
@@ -357,8 +357,8 @@
 				
 				//Unit Reports====>
 				lang.unitreportstemplate="Birim Raporları Ekranı";
-				lang.managertablename="Oluşturanın Adı";
-				lang.managertablesurname=" Oluşturanın Soyadı";
+				lang.managertableusername="Oluşturanın Kullanıcı Adı";
+				lang.managertablename="Adı Soyadı";
 				lang.managertabledate=" Raporun Teslim Tarihi";
 				lang.managertablereport="Rapor";
 				//<=========

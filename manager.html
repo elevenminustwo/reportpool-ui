@@ -198,7 +198,7 @@ $('#tarihAraligiTextarea').keyup( function() {
 	// saves report to REST API, if saveMode is true, saves as incompleted, so user can come back and continue where he left off
 	// if save mode false, report is recorded to database along with acompanying image files
 	function addReport(saveMode, files) {
-		var icerik = "Konu: " + document.getElementById("konuTextarea").value + "\nTarih Araligi: " + document.getElementById("tarihAraligiTextarea").value + "\n" + document.getElementById("icerikTextarea").value;  
+		var icerik = "Kullanici adi: " + username + "\nKonu: " + document.getElementById("konuTextarea").value + "\nTarih Araligi: " + document.getElementById("tarihAraligiTextarea").value + "\n" + document.getElementById("icerikTextarea").value;  
 
 		
 		// fill up object with necessary data --------------------
@@ -212,7 +212,10 @@ $('#tarihAraligiTextarea').keyup( function() {
 		var day = date.getDate();
 		var month = date.getMonth(); 
 		var year = date.getFullYear();
-		var dateString = year + "-" + (month + 1) + "-" + day;
+		var hour = date.getHours();
+		var minute = date.getMinutes();
+		var seconds = date.getSeconds();
+		var dateString = year + "-" + (month + 1) + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 		console.log(dateString);
 		reportObject["dateCompleted"] = dateString;
 
