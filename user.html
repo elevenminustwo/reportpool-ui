@@ -237,27 +237,39 @@ $('#tarihAraligiTextarea').keyup( function() {
 		}
 		formData.append("report", reportJson);
 
-		request.open("POST", "http://localhost:8080/savereport");		
+		request.onerror = function(e){
+    	alert("Unknown Error Occured. Server response not received.");
+		};
 
+		request.open("POST", "http://localhost:8080/savereport");		
 		request.send(formData);
 
-		
+		request.onload = function() {
 
-		// give feedback after save or submission
-		if(saveMode) {
-			document.getElementById("unitSelectError").innerHTML = "Kaydedildi.";
-		} else {
-			document.getElementById("unitSelectError").innerHTML = "Raporunuz başarıyla işlendi.";
+			if(this.status == 200) {
+				// give feedback after save or submission
+				if(saveMode) {
+					document.getElementById("unitSelectError").innerHTML = "Kaydedildi.";
+				} else {
+					document.getElementById("unitSelectError").innerHTML = "Raporunuz başarıyla işlendi.";
+				}
+
+				if(!saveMode) {
+						// reset fields after submit
+						document.getElementById("konuTextarea").value = "";
+						document.getElementById("tarihAraligiTextarea").value = "";
+						document.getElementById("icerikTextarea").value = "";
+						document.getElementById("multipleFileUploadInput").value = "";
+						document.getElementById("multipleFileUploadLabel").innerHTML = "Eklemek istediginiz resim varsa seçiniz (Resimler en fazla 16MB olabilir)";
+					}
+			}
+			else {
+				document.getElementById("unitSelectError").innerHTML = "İşlem yapılamadı.";
+			}	
+
 		}
 
-		if(!saveMode) {
-			// reset fields after submit
-			document.getElementById("konuTextarea").value = "";
-			document.getElementById("tarihAraligiTextarea").value = "";
-			document.getElementById("icerikTextarea").value = "";
-			document.getElementById("multipleFileUploadInput").value = "";
-			document.getElementById("multipleFileUploadLabel").innerHTML = "Eklemek istediginiz resim varsa seçiniz (Resimler en fazla 16MB olabilir)";
-		}
+
 
 	}
    
