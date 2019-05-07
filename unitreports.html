@@ -35,9 +35,13 @@
 
   <script src="controllers/unitreportscontroller.js"></script>
     
+    <!-- Fontawesome cdn -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   
 </head>
 <body>
+
+
 	<div class="container text-white">
   <h2>{{lang.managerheader}}</h2>
   <label>{{lang.managerplsunit}}:</label>
@@ -50,7 +54,7 @@
 
   <div class="input-group">
       <div class="input-group-prepend">
-        <span class="input-group-text">Tarih Aralığı: </span>
+        <span class="input-group-text">{{lang.reportdaterange}}</span>
       </div>
       <input onchange="dateUpdate()" name="fromDateInput" id="fromDateInput" type="date" aria-label="First name" class="form-control">
       <input onchange="dateUpdate()" name="toDateInput" id="toDateInput" type="date" aria-label="Last name" class="form-control">
@@ -64,7 +68,8 @@
                     <!-- <th>{{lang.managertableusername}}</th>   -->      
                     <th>{{lang.managertablename}}</th>          
                     <th>{{lang.managertabledate}}</th>      
-					          <th>{{lang.managertablereport}}</th>           
+                    <th>{{lang.managertablereport}}</th> 
+                    <th>{{lang.reportlistimages}}</th>           
                 </tr>
             </thead>
             <tbody>
@@ -75,7 +80,21 @@
 	
 	
 	
-	</div>
+  </div>
+  
+  <!-- Gallery: https://www.w3schools.com/howto/howto_js_lightbox.asp -->
+  <!-- The Modal/Lightbox -->
+<div id="myModal" class="modal">
+    <span class="close cursor" onclick="closeModal()">&times;</span>
+    <div id="galleryBody" class="modal-content">
+  
+      <!--Put images in here-->
+  
+    </div>
+  </div>
+
+
+
 
   <!-- Footer -->
   <footer class="footer text-center">
@@ -169,7 +188,7 @@
             "filter": true,
             "paging": true,
             "ajax": {
-              "url":"http://localhost:8080/unitreports/" + dept + "/" + unit + "/",
+              "url":"http://localhost:8080/unitreports/" + dept + "/" + unit + "/" + fromDate + "/" + toDate + "/",
               "dataSrc" : "data",
             },
             "columnDefs": [
@@ -181,14 +200,23 @@
                           {
                             "targets": [1],
                             "visible": true,
-                            "orderable": false,
+                            "orderable": true,
                           },
                           {
                             "targets": [2],
                             "visible": true,
                             "orderable": false,
+                  
                           },
-                          { "width": "70%", "targets": [2] }
+                          { "width": "70%", "targets": [2] },
+                          {
+                            "targets": [3],
+                            "visible": true,
+                            "orderable": false,
+                            "render": function ( data, type, row, meta ) {
+							              return '<button type="button" class="open-roleModal btn btn-sm btn-success float-right ml-1" onclick="openImagesOfReport(' + data + ')"><i class="fa fa-picture-o" aria-hidden="true"></i></button>';
+					                },
+                          }
                           ],
 
                   
@@ -208,8 +236,62 @@
     function dateUpdate() {
                 fromDate = document.getElementById('fromDateInput').value;
                 toDate = document.getElementById('toDateInput').value;
-                console.log(fromDate + " - " + toDate);
+                //if(!fromDate == "" && !toDate == "") {
+                  if(fromDate == "")
+                    fromDate = "1970-01-01";
+                  if(toDate == "")
+                    toDate = "2200-01-01";
+
+                  console.log(fromDate + " - " + toDate);
+                  getData();
+                //}
     }
+
+    function openImagesOfReport(reportId) {
+        console.log(reportId);
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8080/downloadImagesOfReport/' + reportId, true);
+        xhr.responseType = '';
+
+        // remove all images before continuing
+        document.getElementById('galleryBody').innerHTML = "";
+ 
+        xhr.onload = function() {
+          if (this.status == 200) {
+            // get binary data as a response
+            var responseArray = JSON.parse(this.responseText);
+
+            if(responseArray.length < 1) {
+              return;
+            }
+
+            openModal();
+            //document.getElementById("image").src = "data:image/png;base64," + responseArray[0];
+
+            for(var i = 1; i <= responseArray.length; i++) {
+              var imageText = '<div class="mySlides"><img id="image' + i + '" src="" style="width:100%"></div>';
+              document.getElementById('galleryBody').innerHTML += imageText;
+              document.getElementById("image" + i).src = "data:image/png;base64," + responseArray[i-1];
+            }
+
+          }
+        };
+        xhr.send();      
+    }
+
+
+      // Open the Modal
+      function openModal() {
+        document.getElementById('myModal').style.display = "block";
+      }
+
+      // Close the Modal
+      function closeModal() {
+        document.getElementById('myModal').style.display = "none";
+      }
+
+
+
 
 
     </script>

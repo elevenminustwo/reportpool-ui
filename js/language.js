@@ -120,6 +120,8 @@
 				lang.managertablename="Adı Soyadı";
 				lang.managertabledate=" Raporun Teslim Tarihi";
 				lang.managertablereport="Rapor";
+				lang.reportdaterange="Tarih Aralığı";
+				lang.reportlistimages="Resimler"
 				//<=========
 				
 				//Footer====>
@@ -240,6 +242,8 @@
 				lang.managertablename="Full Name";
 				lang.managertabledate="Report Date Completed";
 				lang.managertablereport="Report";
+				lang.reportdaterange="Date Range";
+				lang.reportlistimages="Images"
 				//<=========
 				
 				//Footer====>
@@ -361,6 +365,8 @@
 				lang.managertablename="Adı Soyadı";
 				lang.managertabledate=" Raporun Teslim Tarihi";
 				lang.managertablereport="Rapor";
+				lang.reportdaterange="Tarih Aralığı";
+				lang.reportlistimages="Resimler"
 				//<=========
 				
 				//Footer====>
