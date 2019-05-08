@@ -1,4 +1,4 @@
-(function () {
+(function (token) {
     'use strict';
 
     angular
@@ -8,10 +8,18 @@
     function departmentcontroller($http,$scope,$element) {
         var ctrl = this;
 		var departmentId = null;
-		var unitId = null;
+        var unitId = null;
+        
+        var req = {
+            method: 'GET',
+            url: "http://localhost:8080/api/getDepartments",
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+           }
 		
         (function () {
-            $http.get("http://localhost:8080/api/getDepartments")
+            $http(req)
                 .then(function successCallback(response) {
                     ctrl.departments = response.data;
                     },
