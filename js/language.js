@@ -52,7 +52,7 @@
 				lang.admindtname="İsim";
 				lang.admindtsurname="Soyisim";
 				lang.admindtemail="Mail Adresi";
-				lang.admindtisactive="Aktif mi?";
+				lang.admindtisactive="Aktif mi? / Şifre yenileme talebi";
 				lang.admindtrolename="Rolü";
 				lang.admindtunitname="Birim adı";
 				lang.admindtdepartmentname="Departman adı";
@@ -174,7 +174,7 @@
 				lang.admindtname="Name";
 				lang.admindtsurname="Surname";
 				lang.admindtemail="Email";
-				lang.admindtisactive="Is Active?";
+				lang.admindtisactive="Is Active? / Password Reset Request";
 				lang.admindtrolename="Role";
 				lang.admindtunitname="Unit name";
 				lang.admindtdepartmentname="Department name";
@@ -297,7 +297,7 @@
 				lang.admindtname="İsim";
 				lang.admindtsurname="Soyisim";
 				lang.admindtemail="Mail Adresi";
-				lang.admindtisactive="Aktif mi?";
+				lang.admindtisactive="Aktif mi? / Şifre yenileme talebi";
 				lang.admindtrolename="Rolü";
 				lang.admindtunitname="Birim adı";
 				lang.admindtdepartmentname="Departman adı";

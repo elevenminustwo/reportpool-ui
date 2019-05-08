@@ -39,7 +39,9 @@
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
    
   <!-- Fontawesome cdn -->
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+
   
 </head>
 <body ng-controller="AdminController as ctrl">
@@ -228,6 +230,16 @@
                         "orderable": false,
                     },
 					{
+                        "targets": [5],
+                        "visible": true,
+                        "orderable": true,
+						"render": function ( data, type, row, meta ) {
+							var div="";
+							div+=data +'</button><button type="submit" onclick=passwordRequest("'+row[0]+'") class="btn btn-sm float-right ml-1"><i class="fas fa-key" aria-hidden="true"></i></button>';
+							return div;
+					},
+                    },
+					{
                         "targets": [9],
                         "visible": false,
                         "orderable": false,
@@ -301,6 +313,9 @@
 				$('#roledelModal').modal('hide');
 			});
         }
+		function passwordRequest(id){
+			console.log("Password change request id = " + id);
+		}
 		function delDunit(userId,unitID,departmentID) {
             var data = {
                 userId: userId,
