@@ -192,6 +192,14 @@
 
         </div>
   <script>
+
+      	// gets username and token from the page URL
+	    var queryString = location.search;
+	    var urlParams = new URLSearchParams(queryString);
+	    var username = urlParams.get('username');
+	    var token = urlParams.get('token');
+
+
         $(document).ready(function () {
             $("#dataTableId").DataTable({
                 //jquery 1.10.16 da calisiyor sayfa routing i daha yeni surumlerinde o fonksiyon calismiyor.
@@ -206,6 +214,9 @@
                     //gelen jsondaki arrayi isaret etmeli dataSrc
                     "type": "POST",
 					"dataSrc":"data",
+                    "beforeSend": function(xhr){
+                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                    },
 					"error": function (request, status, error) {
         console.log(request);
     },
@@ -269,7 +280,7 @@
                 type: "POST",
                 url: "http://localhost:8080/api/addRole",
                 data: JSON.stringify(data),
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization' : 'Bearer ' + token },
             }).then(function(){
 				$('#dataTableId').DataTable().ajax.reload();
 				$('#roleModal').modal('hide');
@@ -284,7 +295,7 @@
                 type: "POST",
                 url: "http://localhost:8080/api/delRole",
                 data: JSON.stringify(data),
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization' : 'Bearer ' + token },
             }).then(function(){
 				$('#dataTableId').DataTable().ajax.reload();
 				$('#roledelModal').modal('hide');
@@ -301,7 +312,7 @@
                 type: "POST",
                 url: "http://localhost:8080/api/delDunit",
                 data: JSON.stringify(data),
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization' : 'Bearer ' + token },
             }).then(function(){
 				$('#dataTableId').DataTable().ajax.reload();
 			});

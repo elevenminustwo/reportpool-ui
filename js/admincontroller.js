@@ -20,7 +20,16 @@
 		
 		ctrl.getDepartments=getDepartments;
 		function getDepartments(){
-			      $http.get("http://localhost:8080/api/getDepartments")
+
+                    var req = {
+                        method: 'GET',
+                        url: "http://localhost:8080/api/getDepartments",
+                        headers: {
+                        'Authorization': 'Bearer ' + token
+                        }
+                    }
+
+			      $http(req)
 					.then(function successCallback(response) {
 						ctrl.Deparments = response.data;
 					},
@@ -30,7 +39,16 @@
 		}
 		ctrl.getUnits=getUnits;
 		function getUnits(id){
-			      $http.get("http://localhost:8080/api/getUnits/"+id)
+
+                    var req = {
+                        method: 'GET',
+                        url: "http://localhost:8080/api/getUnits/" + id,
+                        headers: {
+                        'Authorization': 'Bearer ' + token
+                        }
+                    }
+
+			      $http(req)
 					.then(function successCallback(response) {
 						ctrl.Units = response.data;
 					},
@@ -45,7 +63,7 @@
 				unitId: unitid,
             };
             $http.post("http://localhost:8080/api/addDunit", JSON.stringify(data), {
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
             })
                 .then(function successCallback(response) {
                     $('#dataTableId').DataTable().ajax.reload();	

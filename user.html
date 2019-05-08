@@ -39,11 +39,11 @@
 	<div class="form-group">
 		<label for="exampleFormControlTextarea1">{{lang.userreport}}:</label>
 		<!-- Gives the illusion that there is only one big text area but in fact there are 6 on top of eachother, borders and radii are aranged to give this illusion -->
-		<textarea class="form-control" id="konuHeader" rows="1" style="border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; background-color:#FFF !important;" disabled>#[İşin Konusu]</textarea>
+		<textarea class="form-control" id="konuHeader" rows="1" style="border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; background-color:#FFF !important;" disabled>{{lang.subjectofjob}}</textarea>
 		<textarea class="form-control" id="konuTextarea" rows="1" style="border-top: none; border-top-right-radius: 0px; border-top-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; box-shadow: none; overflow: hidden;"></textarea>
-		<textarea class="form-control" id="tarihAraligiHeader" rows="1" style="border-top: none; border-top-right-radius: 0px; border-top-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; background-color:#FFF !important;" disabled>#[İşin Tarih Aralığı] (Örneğin: 1 Mayıs 2019'tan 7 Mayıs 2019'a kadar)</textarea>
+		<textarea class="form-control" id="tarihAraligiHeader" rows="1" style="border-top: none; border-top-right-radius: 0px; border-top-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; background-color:#FFF !important;" disabled>{{lang.dateofjob}}</textarea>
 		<textarea class="form-control" id="tarihAraligiTextarea" rows="1" style="border-top: none; border-top-right-radius: 0px; border-top-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; box-shadow: none; overflow: hidden;"></textarea>
-		<textarea class="form-control" id="icerikHeader" rows="1" style="border-top: none; border-top-right-radius: 0px; border-top-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; background-color:#FFF !important;" disabled>#[Yapılanlar]</textarea>
+		<textarea class="form-control" id="icerikHeader" rows="1" style="border-top: none; border-top-right-radius: 0px; border-top-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-bottom: none; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; resize: none; background-color:#FFF !important;" disabled>{{lang.thingsdoneinjob}}</textarea>
 		<textarea class="form-control" id="icerikTextarea" rows="5" style="border-top: none; border-top-right-radius: 0px; border-top-left-radius: 0px; box-shadow: none;"></textarea>
 
 	</div>
@@ -97,10 +97,11 @@ $('#tarihAraligiTextarea').keyup( function() {
   $(this).val( $(this).val().replace( /\r?\n/gi, '' ) );
 });
 
-	// gets username from the page URL
+	// gets username and token from the page URL
 	var queryString = location.search;
 	var urlParams = new URLSearchParams(queryString);
 	var username = urlParams.get('username');
+	var token = urlParams.get('token');
 	
 
 	// initialize dropdown menu for units
@@ -112,53 +113,67 @@ $('#tarihAraligiTextarea').keyup( function() {
 	$(document).ready(function() {
 
 		// 1) Once page is opened, connect to REST API and get user id from username
-		$.getJSON("http://localhost:8080/api/getUserIdOf/" + username, 
-					function(data) { 
-						
+		$.ajax({
+			beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + token);
+					
+			},
+			type : "GET",
+			contentType: "application/json",
+			url: 'http://localhost:8080/api/getUserIdOf/' + username,
+			success: function(data) {
+					
 						userId = data;
 						console.log("Got id: " + userId);
 
 						// 2) Then get user's units using the user id
-						$.getJSON("http://localhost:8080/api/getUserUnits/" + userId, 
-						
-						function(data) { 
-							console.log(data);
-							unitArray = data;
-						
-							for(var i = 0; i < unitArray.length; i++) {
-								console.log(unitArray[i][1]);
-								var option = document.createElement("option");
-								option.text = unitArray[i][1] + "/" + unitArray[i][2];
-								menu.add(option);
+						$.ajax({
+    					beforeSend: function(request) {
+        			request.setRequestHeader("Authorization", 'Bearer ' + token);
+    					},
+							type : "GET",
+							contentType: "application/json",
+    					url: "http://localhost:8080/api/getUserUnits/" + userId,
+   					 	success: function(data) {
+								console.log(data);
+								unitArray = data;
+							
+								for(var i = 0; i < unitArray.length; i++) {
+									console.log(unitArray[i][1]);
+									var option = document.createElement("option");
+									option.text = unitArray[i][1] + "/" + unitArray[i][2];
+									menu.add(option);
+								}
+    					}
+						});
+
+						// 3) Then get user's report where he last left it if he saved before submitting
+						$.ajax({
+							beforeSend: function(request) {
+									request.setRequestHeader("Authorization", 'Bearer ' + token);
+							},
+							type : "GET",
+							contentType: "application/json",
+							url: "http://localhost:8080/api/getIncompleteReportOf/" + userId,
+							success: function(data) {
+								savedReportObject = data;
+
+								// parse saved report body into appropriate textareas using Regular Expressions
+								var body = savedReportObject["text"];
+								var ex1 = "Konu: ";
+								var ex3 = "Tarih Araligi: ";
+								var ex2 = "\n";
+								var konuRegex = new RegExp(ex1 + "(.*)" + ex2);
+								var kalanRegex = new RegExp(ex3 + "(.*)" + ex2 + "(.*)");
+								document.getElementById("konuTextarea").value = body.match(konuRegex)[1];
+								document.getElementById("tarihAraligiTextarea").value = body.match(kalanRegex)[1];
+								document.getElementById("icerikTextarea").value = body.match(kalanRegex)[2];
 							}
-						}
-     			);
-
-					 // 3) Then get user's report where he last left it if he saved before submitting
-					 $.getJSON("http://localhost:8080/api/getIncompleteReportOf/" + userId, 
+						});
 						
-						function(data) { 
-							savedReportObject = data;
-							console.log("Saved report: " + savedReportObject["title"]);
+			}
+		});
 
-							// parse saved report body into appropriate textareas using Regular Expressions
-							var body = savedReportObject["text"];
-							var ex1 = "Konu: ";
-							var ex3 = "Tarih Araligi: ";
-							var ex2 = "\n\n";
-							var konuRegex = new RegExp(ex1 + "(.*)" + ex2);
-							var kalanRegex = new RegExp(ex3 + "(.*)" + ex2 + "(.*)");
-							document.getElementById("konuTextarea").value = body.match(konuRegex)[1];
-							document.getElementById("tarihAraligiTextarea").value = body.match(kalanRegex)[1];
-							document.getElementById("icerikTextarea").value = body.match(kalanRegex)[2];
-													
-
-
-						}
-     			);  
-
-					}
-     ); 
 
 	});
 
@@ -241,7 +256,8 @@ $('#tarihAraligiTextarea').keyup( function() {
     	alert("Unknown Error Occured. Server response not received.");
 		};
 
-		request.open("POST", "http://localhost:8080/savereport");		
+		request.open("POST", "http://localhost:8080/savereport");
+		request.setRequestHeader("Authorization", 'Bearer ' + token)		
 		request.send(formData);
 
 		request.onload = function() {

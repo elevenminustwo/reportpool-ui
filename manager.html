@@ -102,7 +102,7 @@ $('#tarihAraligiTextarea').keyup( function() {
 	var queryString = location.search;
 	var urlParams = new URLSearchParams(queryString);
 	var username = urlParams.get('username');
-	
+	var token = urlParams.get('token');
 
 	// initialize dropdown menu for units
 	var unitArray;
@@ -112,6 +112,71 @@ $('#tarihAraligiTextarea').keyup( function() {
 	var savedReport;
 	$(document).ready(function() {
 
+
+		// 1) Once page is opened, connect to REST API and get user id from username
+		$.ajax({
+			beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + token);
+					
+			},
+			type : "GET",
+			contentType: "application/json",
+			url: 'http://localhost:8080/api/getUserIdOf/' + username,
+			success: function(data) {
+					
+						userId = data;
+						console.log("Got id: " + userId);
+
+						// 2) Then get user's units using the user id
+						$.ajax({
+    					beforeSend: function(request) {
+        			request.setRequestHeader("Authorization", 'Bearer ' + token);
+    					},
+							type : "GET",
+							contentType: "application/json",
+    					url: "http://localhost:8080/api/getUserUnits/" + userId,
+   					 	success: function(data) {
+								console.log(data);
+								unitArray = data;
+							
+								for(var i = 0; i < unitArray.length; i++) {
+									console.log(unitArray[i][1]);
+									var option = document.createElement("option");
+									option.text = unitArray[i][1] + "/" + unitArray[i][2];
+									menu.add(option);
+								}
+    					}
+						});
+
+						// 3) Then get user's report where he last left it if he saved before submitting
+						$.ajax({
+							beforeSend: function(request) {
+									request.setRequestHeader("Authorization", 'Bearer ' + token);
+							},
+							type : "GET",
+							contentType: "application/json",
+							url: "http://localhost:8080/api/getIncompleteReportOf/" + userId,
+							success: function(data) {
+								savedReportObject = data;
+
+								// parse saved report body into appropriate textareas using Regular Expressions
+								var body = savedReportObject["text"];
+								var ex1 = "Konu: ";
+								var ex3 = "Tarih Araligi: ";
+								var ex2 = "\n";
+								var konuRegex = new RegExp(ex1 + "(.*)" + ex2);
+								var kalanRegex = new RegExp(ex3 + "(.*)" + ex2 + "(.*)");
+								document.getElementById("konuTextarea").value = body.match(konuRegex)[1];
+								document.getElementById("tarihAraligiTextarea").value = body.match(kalanRegex)[1];
+								document.getElementById("icerikTextarea").value = body.match(kalanRegex)[2];
+							}
+						});
+						
+			}
+		});
+
+
+		/*
 		// 1) Once page is opened, connect to REST API and get user id from username
 		$.getJSON("http://localhost:8080/api/getUserIdOf/" + username, 
 					function(data) { 
@@ -160,6 +225,8 @@ $('#tarihAraligiTextarea').keyup( function() {
 
 					}
      ); 
+
+		 */
 
 	});
 
@@ -243,6 +310,7 @@ $('#tarihAraligiTextarea').keyup( function() {
 		};
 
 		request.open("POST", "http://localhost:8080/savereport");		
+		request.setRequestHeader("Authorization", 'Bearer ' + token)
 		request.send(formData);
 
 
@@ -296,7 +364,7 @@ $('#tarihAraligiTextarea').keyup( function() {
 
 	function toReports() {
 
-		window.location.href='unitreports.html?username=' + username;
+		window.location.href='unitreports.html?username=' + username +'&token=' + token;
 
 	}
 

@@ -38,6 +38,55 @@
     <!-- Fontawesome cdn -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   
+
+
+    <style>
+    
+    
+        /* The Modal (background) */
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          padding-top: 100px;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: black;
+        }
+
+        /* Modal Content */
+        .modal-content {
+          position: relative;
+          background-color: #fefefe;
+          margin: auto;
+          padding: 0;
+          width: 90%;
+          max-width: 1200px;
+        }
+
+        /* The Close Button */
+        .close {
+          color: white;
+          position: absolute;
+          top: 10px;
+          right: 25px;
+          font-size: 35px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #999;
+          text-decoration: none;
+          cursor: pointer;
+        }
+    
+    </style>
+
+
 </head>
 <body>
 
@@ -113,6 +162,7 @@
 	  var queryString = location.search;
 	  var urlParams = new URLSearchParams(queryString);
 	  var username = urlParams.get('username');
+    var token = urlParams.get('token');
 
 
 	  // initialize dropdown menu for units
@@ -125,6 +175,51 @@
     $(document).ready(function () {
 
 
+
+
+      // 1) Once page is opened, connect to REST API and get user id from username
+      // 1) Once page is opened, connect to REST API and get user id from username
+		$.ajax({
+			beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + token);
+					
+			},
+			type : "GET",
+			contentType: "application/json",
+			url: 'http://localhost:8080/api/getUserIdOf/' + username,
+			success: function(data) {
+					
+						userId = data;
+						console.log("Got id: " + userId);
+
+						// 2) Then get user's units using the user id
+						$.ajax({
+    					beforeSend: function(request) {
+        			request.setRequestHeader("Authorization", 'Bearer ' + token);
+    					},
+							type : "GET",
+							contentType: "application/json",
+    					url: "http://localhost:8080/api/getUserUnits/" + userId,
+   					 	success: function(data) {
+								console.log(data);
+								unitArray = data;
+							
+								for(var i = 0; i < unitArray.length; i++) {
+									console.log(unitArray[i][1]);
+									var option = document.createElement("option");
+									option.text = unitArray[i][1] + "/" + unitArray[i][2];
+									menu.add(option);
+								}
+    					}
+						});
+      }
+    });
+
+
+
+
+
+      /*
       // 1) Once page is opened, connect to REST API and get user id from username
 		  $.getJSON("http://localhost:8080/api/getUserIdOf/" + username, 
 					function(data) { 
@@ -150,6 +245,7 @@
 
 					}
      );
+     */
      
 
 
@@ -189,6 +285,10 @@
             "ajax": {
               "url":"http://localhost:8080/unitreports/" + dept + "/" + unit + "/" + fromDate + "/" + toDate + "/",
               "dataSrc" : "data",
+              "beforeSend": function(xhr){
+                xhr.setRequestHeader("Authorization",
+                "Bearer " + token);
+              }
             },
             "columnDefs": [
                           {
@@ -249,6 +349,7 @@
         console.log(reportId);
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'http://localhost:8080/downloadImagesOfReport/' + reportId, true);
+        xhr.setRequestHeader("Authorization", 'Bearer ' + token);
         xhr.responseType = '';
 
         // remove all images before continuing

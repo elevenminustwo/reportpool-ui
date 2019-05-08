@@ -81,14 +81,14 @@
           type:"POST",
           contentType:"application/json",
         }).then(function(response){
-			if(response=="Admin"){
-			window.location.href = "admin.html?username=" + username;
+			if(response[0]=="Admin"){
+			window.location.href = "admin.html?username=" + username + "&token=" + response[1];
 			}
-			else if(response=="Manager"){
-			window.location.href = "manager.html?username=" + username;
+			else if(response[0]=="Manager"){
+			window.location.href = "manager.html?username=" + username + "&token=" + response[1];
 			}
 			else{
-			window.location.href = "user.html?username=" + username;
+			window.location.href = "user.html?username=" + username + "&token=" + response[1];
 			}
 			})
 			.catch(function (data) {
