@@ -69,6 +69,7 @@
 				lang.deletedepmodal="Departman Silme Modülü";
 				lang.logssurface="Loglar(Yüzeysel)";
 				lang.logsdetailed="Loglar(Detaylı)";
+				lang.editdepartments="Departmanları Düzenle";
 				//<=========
 				
 				//Modal====>
@@ -131,6 +132,11 @@
 				lang.copyright="Akdeniz Üniversitesi Tüm Hakları Saklıdır.";
 				lang.logout="Çıkış Yap";
 				//<=========
+				
+				//Log=====>
+				lang.logtemplate="Sistem  Akış Ekranı";
+				lang.log = "Sistem  Akışı";
+				//<========
         })();
 		
 		lang.translateeng = translateeng;
@@ -194,6 +200,7 @@
 				lang.deletedepmodal="Delete Department Modal";
 				lang.logssurface="Logs(Simple)";
 				lang.logsdetailed="Logs(Detailed)";
+				lang.editdepartments="Edit Departments";
 				//<=========
 				
 				//Modal====>
@@ -257,6 +264,10 @@
 				lang.logout="Log Out";
 				//<=========
 				
+				//Log=====>
+				lang.logtemplate="Log Template";
+				lang.log = "Log";
+				//<========
 		
 		}
 		lang.translatetr = translatetr;
@@ -320,6 +331,7 @@
 				lang.deletedepmodal="Departman Silme Modülü";
 				lang.logssurface="Loglar(Yüzeysel)";
 				lang.logsdetailed="Loglar(Detaylı)";
+				lang.editdepartments="Departmanları Düzenle";
 				//<=========
 				
 				//Modal====>
@@ -382,6 +394,11 @@
 				lang.copyright="Akdeniz Üniversitesi Tüm Hakları Saklıdır.";
 				lang.logout="Çıkış Yap";
 				//<=========
+				
+				//Log=====>
+				lang.logtemplate="Sistem  Akış Ekranı";
+				lang.log = "Sistem  Akışı";
+				//<========
 		}
     }
 

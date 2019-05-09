@@ -47,7 +47,8 @@
 <body ng-controller="AdminController as ctrl">
 	<div class="container text-white">
 	<h2>{{lang.adminheader}}</h2>
-    <a class="btn text-white" href="createdepartment.html">Edit Deparments</a>
+	
+    <a type="button" class="btn btn-warning" href="createdepartment.html" style="margin-left : 5px;">{{lang.editdepartments}}</a>
     <button type="button" class="btn btn-warning float-left" onclick="toLogs(true)" style="margin-left : 5px;">{{lang.logssurface}}</button>
 	<button type="button" class="btn btn-warning float-left" onclick="toLogs(false)" style="margin-left : 5px;">{{lang.logsdetailed}}</button>
     <div class="panel">
