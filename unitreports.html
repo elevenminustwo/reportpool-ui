@@ -36,7 +36,8 @@
   <script src="controllers/unitreportscontroller.js"></script>
     
   <!-- Fontawesome cdn -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
 
 
     <style>
@@ -149,7 +150,7 @@
 	
 	<button class="btn text-white" ng-click="lang.translateeng()"><img src="images/uk.png"> English</button>
 	<button class="btn text-white" ng-click="lang.translatetr()"><img src="images/turkey.png"> Türkçe</button>
-		<a class="btn text-white float-right" href="login.html"><img style="
+		<a class="btn text-white float-right" href="login.html" onclick="deleteToken()"><img style="
 			filter: contrast(1);" src="images/shutdown.png">{{lang.logout}}</a>
   </footer>
   
@@ -161,7 +162,7 @@
 	  var queryString = location.search;
 	  var urlParams = new URLSearchParams(queryString);
 	  var username = urlParams.get('username');
-    var token = urlParams.get('token');
+    var token = localStorage.getItem('reportpooltoken');
 
 
 	  // initialize dropdown menu for units
@@ -173,10 +174,6 @@
     var userId;
     $(document).ready(function () {
 
-
-
-
-      // 1) Once page is opened, connect to REST API and get user id from username
       // 1) Once page is opened, connect to REST API and get user id from username
 		$.ajax({
 			beforeSend: function(request) {
@@ -213,38 +210,6 @@
 						});
       }
     });
-
-
-
-
-
-      /*
-      // 1) Once page is opened, connect to REST API and get user id from username
-		  $.getJSON("http://localhost:8080/api/getUserIdOf/" + username, 
-					function(data) { 
-						
-						userId = data;
-						console.log("Got id: " + userId);
-
-						// 2) Then get user's units using the user id
-						$.getJSON("http://localhost:8080/api/getUserUnits/" + userId, 
-						
-						function(data) { 
-							console.log(data);
-							unitArray = data;
-						
-							for(var i = 0; i < unitArray.length; i++) {
-								console.log(unitArray[i][1]);
-								var option = document.createElement("option");
-								option.text = unitArray[i][1] + "/" + unitArray[i][2];
-								menu.add(option);
-							}
-						}
-     			); 
-
-					}
-     );
-     */
      
 
 
@@ -311,7 +276,7 @@
                             "visible": true,
                             "orderable": false,
                             "render": function ( data, type, row, meta ) {
-							              return '<button type="button" class="open-roleModal btn btn-sm btn-success float-right ml-1" onclick="openImagesOfReport(' + data + ')"><i class="fa fa-picture-o" aria-hidden="true"></i></button>';
+							              return '<button type="button" class="open-roleModal btn btn-sm btn-success float-right ml-1" onclick="openImagesOfReport(' + data + ')"><i class="fa fa-file-image" aria-hidden="true"></i></button>';
 					                },
                           }
                           ],
@@ -391,6 +356,13 @@
       function closeModal() {
         document.getElementById('myModal').style.display = "none";
       }
+
+      function deleteToken() {
+            localStorage.removeItem('reportpooltoken');
+        }
+
+
+        
 
 
 
