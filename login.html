@@ -73,6 +73,10 @@
 	</div>
  
    <script>
+
+			// if there is already a token, delete it when login page opens
+			localStorage.removeItem('reportpooltoken')
+
       function login(){
         var username=document.getElementById("inputName").value;
         var password=document.getElementById("inputPassword").value;
@@ -81,14 +85,21 @@
           type:"POST",
           contentType:"application/json",
         }).then(function(response){
+
+					//put token into cookie
+					//document.cookie='token=' + response[1] + ", path=/";
+					
+					// put token into localstorage
+					localStorage.setItem('reportpooltoken', response[1]);
+
 			if(response[0]=="Admin"){
-			window.location.href = "admin.html?username=" + username + "&token=" + response[1];
+			window.location.href = "admin.html?username=" + username;
 			}
 			else if(response[0]=="Manager"){
-			window.location.href = "manager.html?username=" + username + "&token=" + response[1];
+			window.location.href = "manager.html?username=" + username;
 			}
 			else{
-			window.location.href = "user.html?username=" + username + "&token=" + response[1];
+			window.location.href = "user.html?username=" + username;
 			}
 			})
 			.catch(function (data) {

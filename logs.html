@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="Language as lang">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>{{lang.departmentcreatetitle}}</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- AngularJs -->
+<script src="vendor/angular-1.6.0/angular.min.js"></script>
+<script src="js/app.config.js"></script>
+<script src="js/app.module.js"></script>
+<script src="js/language.js"></script>
+  <script src="controllers/departmentcontroller.js"></script>
+  
+  <!-- Bootstrap core CSS --> 
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+   <!-- Custom CSS -->
+  <link href="css/manager.css" rel="stylesheet">
+  
+<!-- Fontawesome cdn -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+ 
+</head>
+
+<body>
+	
+	<div class="container text-white">
+	
+	<h2>Logs</h2>
+	<div class="panel">
+		 <div class="panel-body">
+			
+                <div id="logTextBox" style="background-color: white; color: black; overflow:auto; width: 100%; height: 400px;">
+                    
+                    </div>
+
+
+	</div>
+	
+	
+	
+	</div>
+
+
+   <!-- Footer -->
+  <footer class="footer text-center">
+    <p class="copyright " style="width:auto">Copyright © 2019 {{lang.copyright}}</p>
+	
+	<button class="btn text-white" ng-click="lang.translateeng()"><img src="images/uk.png"> English</button>
+	<button class="btn text-white" ng-click="lang.translatetr()"><img src="images/turkey.png"> Türkçe</button>
+		<a class="btn text-white float-right" href="login.html"><img style="
+			filter: contrast(1);" src="images/shutdown.png">{{lang.logout}}</a>
+  </footer>
+
+</body>
+
+
+<script>
+
+var queryString = location.search;
+var urlParams = new URLSearchParams(queryString);
+var surfaceOrTechnical = urlParams.get('surfaceOrTechnical'); // surface => true , technical => false
+var token = localStorage.getItem('reportpooltoken');
+
+$(document).ready(function() {
+
+    console.log("surface or technical: " + surfaceOrTechnical);
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/api/getLogs/" + surfaceOrTechnical,
+        headers: { 'Authorization' : 'Bearer ' + token },
+    }).then(function(data){
+        var logDiv = document.getElementById('logTextBox');
+        logDiv.innerHTML = data;
+        logDiv.scrollTop = logDiv.scrollHeight;
+    	});
+
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+</html>

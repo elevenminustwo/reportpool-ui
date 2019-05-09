@@ -70,6 +70,7 @@
 	<div class="text-right mt-3">
 	<button type="submit" id="submitButton" class="btn btn-success float-right ml-3">{{lang.usercommitreport}}</button>
 	<button id="saveButton" class="btn btn-dark">{{lang.usersave}}</button>
+	<button type="button" id="passwordChangeRequestButton" class="btn btn-warning float-left" onclick="sendPasswordChangeRequest()" style="margin-left : 5px;">{{lang.passwordchangerequest}}</button>
 	</div>
 
 	
@@ -83,7 +84,7 @@
 	
 	<button class="btn text-white" ng-click="lang.translateeng()"><img src="images/uk.png"> English</button>
 	<button class="btn text-white" ng-click="lang.translatetr()"><img src="images/turkey.png"> Türkçe</button>
-		<a class="btn text-white float-right" href="login.html"><img style="
+		<a class="btn text-white float-right" href="login.html" onclick="deleteToken()"><img style="
 			filter: contrast(1);" src="images/shutdown.png">{{lang.logout}}</a>
   </footer>
 
@@ -103,7 +104,7 @@ $('#tarihAraligiTextarea').keyup( function() {
 	var queryString = location.search;
 	var urlParams = new URLSearchParams(queryString);
 	var username = urlParams.get('username');
-	var token = urlParams.get('token');
+	var token = localStorage.getItem('reportpooltoken');
 	
 
 	// initialize dropdown menu for units
@@ -309,8 +310,25 @@ $('#tarihAraligiTextarea').keyup( function() {
 		addReport(false, files);
 
     event.preventDefault();
-  }, true);
+	}, true);
+	
 
+	function deleteToken() {
+            localStorage.removeItem('token');
+				}
+				
+				function sendPasswordChangeRequest(){
+					var r = confirm("Şifre yenileme talebi yollamak istediğinize emin misiniz?");
+					if(r == true) {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/api/change/sendPasswordChangeRequest?username=" + username,
+                headers: { 'Content-Type': 'application/json', 'Authorization' : 'Bearer ' + token },
+            }).then(function(){
+							alert("Şifre değişiklik talebiniz iletildi. Emailinizi kontrol ediniz.")
+						});
+					}
+  }
 
 </script>
 

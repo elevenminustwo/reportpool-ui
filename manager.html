@@ -72,6 +72,8 @@
 	<button type="submit" id="submitButton" class="btn btn-success float-right ml-3">{{lang.managercommitreport}}</button>
 	<button type="submit" id="saveButton" class="btn btn-dark">{{lang.managersave}}</button>
 	<button type="button" id="unitreportsButton" class="btn btn-warning float-left" onclick="toReports()">{{lang.managercheckunitreports}}</button>
+	<button type="button" id="passwordChangeRequestButton" class="btn btn-warning float-left" onclick="sendPasswordChangeRequest()" style="margin-left : 5px;">{{lang.passwordchangerequest}}</button>
+
 	</div>
 
 	
@@ -85,7 +87,7 @@
 	
 	<button class="btn text-white" ng-click="lang.translateeng()"><img src="images/uk.png"> English</button>
 	<button class="btn text-white" ng-click="lang.translatetr()"><img src="images/turkey.png"> Türkçe</button>
-		<a class="btn text-white float-right" href="login.html"><img style="
+		<a class="btn text-white float-right" href="login.html" onclick="deleteToken()"><img style="
 			filter: contrast(1);" src="images/shutdown.png">{{lang.logout}}</a>
   </footer>
 
@@ -105,7 +107,9 @@ $('#tarihAraligiTextarea').keyup( function() {
 	var queryString = location.search;
 	var urlParams = new URLSearchParams(queryString);
 	var username = urlParams.get('username');
-	var token = urlParams.get('token');
+	var token = localStorage.getItem('reportpooltoken');
+
+	var clickedOnReportsPage = false;
 
 	// initialize dropdown menu for units
 	var unitArray;
@@ -177,59 +181,6 @@ $('#tarihAraligiTextarea').keyup( function() {
 						
 			}
 		});
-
-
-		/*
-		// 1) Once page is opened, connect to REST API and get user id from username
-		$.getJSON("http://localhost:8080/api/getUserIdOf/" + username, 
-					function(data) { 
-						
-						userId = data;
-						console.log("Got id: " + userId);
-
-						// 2) Then get user's units using the user id
-						$.getJSON("http://localhost:8080/api/getUserUnits/" + userId, 
-						
-						function(data) { 
-							console.log(data);
-							unitArray = data;
-						
-							for(var i = 0; i < unitArray.length; i++) {
-								console.log(unitArray[i][1]);
-								var option = document.createElement("option");
-								option.text = unitArray[i][1] + "/" + unitArray[i][2];
-								menu.add(option);
-							}
-						}
-     			);
-
-					 // 3) Then get user's report where he last left it if he saved before submitting
-					 $.getJSON("http://localhost:8080/api/getIncompleteReportOf/" + userId, 
-						
-						function(data) { 
-							savedReportObject = data;
-							console.log("Saved report: " + savedReportObject["title"]);
-
-							// parse saved report body into appropriate textareas using Regular Expressions
-							var body = savedReportObject["text"];
-							var ex1 = "Konu: ";
-							var ex3 = "Tarih Araligi: ";
-							var ex2 = "\n\n";
-							var konuRegex = new RegExp(ex1 + "(.*)" + ex2);
-							var kalanRegex = new RegExp(ex3 + "(.*)" + ex2 + "(.*)");
-							document.getElementById("konuTextarea").value = body.match(konuRegex)[1];
-							document.getElementById("tarihAraligiTextarea").value = body.match(kalanRegex)[1];
-							document.getElementById("icerikTextarea").value = body.match(kalanRegex)[2];
-													
-
-
-						}
-     			);  
-
-					}
-     ); 
-
-		 */
 
 	});
 
@@ -366,10 +317,29 @@ $('#tarihAraligiTextarea').keyup( function() {
 	
 
 	function toReports() {
-
-		window.location.href='unitreports.html?username=' + username +'&token=' + token;
+		clickedOnReportsPage = true;
+		window.location.href='unitreports.html?username=' + username;
 
 	}
+
+
+	function deleteToken() {
+            localStorage.removeItem('reportpooltoken');
+				}
+
+	function sendPasswordChangeRequest(){
+				var r = confirm("Şifre yenileme talebi yollamak istediğinize emin misiniz?");
+					if(r == true) {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/api/change/sendPasswordChangeRequest?username=" + username,
+                headers: { 'Content-Type': 'application/json', 'Authorization' : 'Bearer ' + token },
+            }).then(function(){
+							alert("Şifre değişiklik talebiniz iletildi. Emailinizi kontrol ediniz.")
+						});
+					}						
+  }
+				
 
 
 </script>

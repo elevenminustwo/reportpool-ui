@@ -52,7 +52,7 @@
 				lang.admindtname="İsim";
 				lang.admindtsurname="Soyisim";
 				lang.admindtemail="Mail Adresi";
-				lang.admindtisactive="Aktif mi? / Şifre yenileme talebi";
+				lang.admindtisactive="Aktif mi? / Aktivasyon emaili yolla";
 				lang.admindtrolename="Rolü";
 				lang.admindtunitname="Birim adı";
 				lang.admindtdepartmentname="Departman adı";
@@ -67,6 +67,8 @@
 				lang.selectdepartment="Departman seçiniz";
 				lang.selectunit="Birim Seçiniz";
 				lang.deletedepmodal="Departman Silme Modülü";
+				lang.logssurface="Loglar(Yüzeysel)";
+				lang.logsdetailed="Loglar(Detaylı)";
 				//<=========
 				
 				//Modal====>
@@ -95,6 +97,7 @@
 				lang.managercommitreport="Raporu işle";
 				lang.managersave="Kaydet";
 				lang.optunit="Biriminiz";
+				lang.passwordchangerequest="Şifre Değişikliği";
 				//<=========
 				
 				//User====>
@@ -174,7 +177,7 @@
 				lang.admindtname="Name";
 				lang.admindtsurname="Surname";
 				lang.admindtemail="Email";
-				lang.admindtisactive="Is Active? / Password Reset Request";
+				lang.admindtisactive="Is Active? / Send activation email";
 				lang.admindtrolename="Role";
 				lang.admindtunitname="Unit name";
 				lang.admindtdepartmentname="Department name";
@@ -189,6 +192,8 @@
 				lang.selectdepartment="Select department";
 				lang.selectunit="Select unit";
 				lang.deletedepmodal="Delete Department Modal";
+				lang.logssurface="Logs(Simple)";
+				lang.logsdetailed="Logs(Detailed)";
 				//<=========
 				
 				//Modal====>
@@ -217,6 +222,7 @@
 				lang.managercommitreport="Commit report";
 				lang.managersave="Save";
 				lang.optunit="Your unit";
+				lang.passwordchangerequest="Password change";
 				//<=========
 				
 				//User====>
@@ -297,7 +303,7 @@
 				lang.admindtname="İsim";
 				lang.admindtsurname="Soyisim";
 				lang.admindtemail="Mail Adresi";
-				lang.admindtisactive="Aktif mi? / Şifre yenileme talebi";
+				lang.admindtisactive="Aktif mi? / Aktivasyon emaili yolla";
 				lang.admindtrolename="Rolü";
 				lang.admindtunitname="Birim adı";
 				lang.admindtdepartmentname="Departman adı";
@@ -312,6 +318,8 @@
 				lang.selectdepartment="Departman seçiniz";
 				lang.selectunit="Birim Seçiniz";
 				lang.deletedepmodal="Departman Silme Modülü";
+				lang.logssurface="Loglar(Yüzeysel)";
+				lang.logsdetailed="Loglar(Detaylı)";
 				//<=========
 				
 				//Modal====>
@@ -340,6 +348,7 @@
 				lang.managercommitreport="Raporu işle";
 				lang.managersave="Kaydet";
 				lang.optunit="Biriminiz";
+				lang.passwordchangerequest="Şifre Değişikliği";
 				//<=========
 				
 				//User====>
