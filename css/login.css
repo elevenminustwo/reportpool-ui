@@ -10,7 +10,7 @@ body,
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #fdd043;
+			background: #ff7e29;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -38,14 +38,14 @@ body,
 			border-radius: 50%;
 			border: 2px solid white;
 			filter: contrast(2);
-			background: #085f63;
+			background: #0b0070;
 		}
 		.form_container {
 			margin-top: 100px;
 		}
 		.login_btn {
 			width: 100%;
-			background: #085f63 !important;
+			background: #0b0070 !important;
 			color: white !important;
 		}
 		.login_btn:focus {
@@ -56,7 +56,7 @@ body,
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #085f63 !important;
+			background: #0b0070 !important;
 			color: white !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
