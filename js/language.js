@@ -81,6 +81,12 @@
 				//Create Departmant====>
 				lang.departmentcreatetitle="Departman Oluşturma Ekranı";
 				lang.depcreatehead="Departman Oluştur";
+				lang.depaddmodal = "Departman Ekleme Modülü";
+				lang.createdepartmentname = "Departman İsmi";
+				lang.depadd = "Departman İsmi";
+				lang.unitadd = "Birim Ekle";
+				lang.unitaddmodal = "Birim Ekleme Modülü";
+				lang.unitname = "Birim İsmi";
 				//<=========
 				
 				//Create Unit====>
@@ -212,6 +218,12 @@
 				//Create Departmant====>
 				lang.departmentcreatetitle="Department Create Template";
 				lang.depcreatehead="Department Create";
+				lang.depaddmodal = "Department Add Modal";
+				lang.createdepartmentname = "Department Name";
+				lang.depadd = "Department Add";
+				lang.unitadd = "Unit Add";
+				lang.unitaddmodal = "Unit Add Modal";
+				lang.unitname = "Unit Name";
 				//<=========
 				
 				//Create Unit====>
@@ -343,6 +355,12 @@
 				//Create Departmant====>
 				lang.departmentcreatetitle="Departman Oluşturma Ekranı";
 				lang.depcreatehead="Departman Oluştur";
+				lang.depaddmodal = "Departman Ekleme Modülü";
+				lang.createdepartmentname = "Departman İsmi";
+				lang.depadd = "Departman İsmi";
+				lang.unitadd = "Birim Ekle";
+				lang.unitaddmodal = "Birim Ekleme Modülü";
+				lang.unitname = "Birim İsmi";
 				//<=========
 				
 				//Create Unit====>
